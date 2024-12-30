@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    
+
+    <!-- MARK: Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     
     <!--MARK: CSS -->
     <!-- layout -->
     <link rel="stylesheet" href="css/layout/main-body.css">
+    <link rel="stylesheet" href="css/layout/feed-container.css">
+    <link rel="stylesheet" href="css/layout/true-body.css">
     <link rel="stylesheet" href="css/test.css">
-    
+
     <!-- components -->
     <link rel="stylesheet" href="css/components/comp-navbar.css">
+    <link rel="stylesheet" href="css/components/comp-header.css">
+    <link rel="stylesheet" href="css/components/comp-buttons.css">
     
 </head>
 <body class="main-body">
@@ -28,37 +37,19 @@
             <img src="images/placeholder.png" class="comp-navbar-svg">
         </div>
     </div>
-    
-    <div class="test-feed-container">
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">b</div>
-        <div class="test-1">a</div>
-        <div class="test-2">baaa</div>
+
+    <div class="true-body">
+        <div class="feed-container">
+            <div class="comp-header">
+                <p class="comp-header-text">Feed title</p>
+                <div class="button-outlined">
+                    <img src="icons/buttons/forward.svg" class="button-icon">
+                    <p class="button-outlined-text">See more of this feed</p>
+                </div>
+            </div>
+        </div>
     </div>
+    
     
 
 </body>

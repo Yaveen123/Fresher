@@ -1,0 +1,15 @@
+/* Desktop/Tablet */
+@media (min-width: 601px) {
+    .true-body {
+        display: flex;
+        width:100%;
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .true-body {
+        margin-left: 20px;
+    }
+}
