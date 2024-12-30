@@ -1,0 +1,16 @@
+.main-body {
+    display: flex;
+    min-width: 600px;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .main-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        background-color: antiquewhite;
+    }
+    
+}
