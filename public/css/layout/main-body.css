@@ -3,6 +3,7 @@
     .main-body {
         display: flex;
         align-items: center;
+        margin-left: 65px;
     } 
 }
 
@@ -13,5 +14,6 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        margin-bottom: 85px;
     }
 }
