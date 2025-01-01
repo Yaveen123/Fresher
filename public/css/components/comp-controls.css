@@ -1,0 +1,21 @@
+/*MARK: Image*/
+.image_upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: -48px;
+}
+.image_upload:hover > .image_upload-image {
+    outline: 1px solid #016201;
+}
+.image_upload-image {
+    width: 185.882px;
+    height: 185.882px;
+    border-radius: 185.882px;
+    object-fit: cover;
+    margin-bottom: -48px;
+}
+
+/*MARK: Textbox
+

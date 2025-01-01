@@ -29,7 +29,7 @@
 }
 .button-filled:hover {
     background-color:#002500;
-    outline: solid 1px #016201;
+    outline: solid 1px #016201; /*'Panwp' (2015) When 1 px border is added to div, Div size increases, Don't want to do that, Accessed 31 Dec 2024 https://stackoverflow.com/questions/3254587/when-1-px-border-is-added-to-div-div-size-increases-dont-want-to-do-that*/
     transition: all 0.3s;
 }
 
