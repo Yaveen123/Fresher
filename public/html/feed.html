@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Fresher</title>
+
+    <!-- MARK: Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    
+    <!--MARK: CSS -->
+    <!-- layout -->
+    <link rel="stylesheet" href="../css/layout/main-body.css">
+    <link rel="stylesheet" href="../css/layout/feed-container.css">
+    <link rel="stylesheet" href="../css/layout/true-body.css">
+    <link rel="stylesheet" href="../css/test.css">
+
+    <!-- components -->
+    <link rel="stylesheet" href="../css/components/comp-navbar.css">
+    <link rel="stylesheet" href="../css/components/comp-header.css">
+    <link rel="stylesheet" href="../css/components/comp-buttons.css">
+    <link rel="stylesheet" href="../css/components/comp-titlebar.css">
+    <link rel="stylesheet" href="../css/components/comp-cards.css">
+    
+</head>
+<body class="main-body">
+    <nav class="comp-navbar">
+        <a class="comp-navbar-icon-default" href="../html/feed.html">
+            <img src="../icons/navbar/home.svg" class="comp-navbar-svg" alt="Home icon">
+        </a>
+        <a class="comp-navbar-icon-default" href="../html/settings-rss.html">
+            <img src="../icons/navbar/rss.svg" class="comp-navbar-svg" alt="RSS settings icon">
+        </a>
+        <a class="comp-navbar-icon-default" href="../html/settings-home.html">
+            <img src="../icons/navbar/settings.svg" class="comp-navbar-svg" alt="General settings icon">
+        </a>
+        <a class="comp-navbar-icon-default" href="../html/settings-account.html">
+            <img src="../images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
+        </a>
+    </nav>
+
+    <div class="true-body">
+        <header class="titlebar-container">
+            <img src="../icons/other/logo.svg" alt="Fresher Logo">
+        </header>
+        <section class="feed-container">
+            <div class="comp-header">
+                <p class="comp-header-text">Feed title</p>
+                <div class="button-outlined">
+                    <img src="../icons/buttons/forward.svg" class="button-icon" alt="Forward icon">
+                    <p class="button-outlined-text">See more of this feed</p>
+                </div>
+            </div>
+            <a class="card" href="https://google.com">
+                <div class="card-content">
+                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente porro ipsam tempora facilis libero enim ratione, placeat quisquam commodi atque aliquid autem sequi minus dignissimos. Dolorum explicabo sed corporis quasi!</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </a>
+            <a class="card" href="https://google.com">
+                <div class="card-content">
+                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente porro ipsam tempora facilis libero enim ratione, placeat quisquam commodi atque aliquid autem sequi minus dignissimos. Dolorum explicabo sed corporis quasi!</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </a>
+            <a class="card" href="https://google.com">
+                <div class="card-content">
+                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente porro ipsam tempora facilis libero enim ratione, placeat quisquam commodi atque aliquid autem sequi minus dignissimos. Dolorum explicabo sed corporis quasi!</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </a>
+            <a class="card" href="https://google.com">
+                <div class="card-content">
+                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente porro ipsam tempora facilis libero enim ratione, placeat quisquam commodi atque aliquid autem sequi minus dignissimos. Dolorum explicabo sed corporis quasi!</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </a>
+
+        </section>
+    </div>
+    
+    <script>
+        //MARK:Need to comment and change
+        console.log(document.documentElement.clientWidth);
+        if (document.documentElement.clientWidth < 600) {
+                const images = document.querySelectorAll(".card-content-image");
+                const titles = document.querySelectorAll(".card-content-title");
+                images.forEach((image, index) => {
+                    image.style.height = titles[index].offsetHeight + 'px';
+                });
+            }
+        window.addEventListener('resize', () => {
+            if (document.documentElement.clientWidth < 600) {
+                const images = document.querySelectorAll(".card-content-image");
+                const titles = document.querySelectorAll(".card-content-title");
+                images.forEach((image, index) => {
+                    image.style.height = titles[index].offsetHeight + 'px';
+                });
+            } else {
+            const images = document.querySelectorAll(".card-content-image");
+            images.forEach((image) => {
+                image.style.height = '278px';
+            });
+            }
+        });
+    </script>
+
+</body>
+</html>

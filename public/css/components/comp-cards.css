@@ -2,6 +2,7 @@
 /* Desktop/Tablet */
 @media (min-width: 601px) {
     .card {
+        text-decoration: none;
         display: flex;
         width: 100%;
         min-width: 400px;
@@ -11,6 +12,10 @@
         align-items: flex-start;
         gap: 10px;
         flex: 1 0 0;
+        
+    }
+    .card:hover {
+        text-decoration: none;
     }
     .card-content {
         display: flex;

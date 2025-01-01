@@ -6,6 +6,7 @@
 
 /*MARK:Filled*/
 .button-filled {
+    text-decoration: none;
     display: flex;
     padding: 10px 20px 10px 15px;
     align-items: center;
@@ -14,16 +15,22 @@
     border: 1px solid #FFF;
     background: #016201;
     width: fit-content;
+    transition: all 0.1s;
 }
 .button-filled-text {
     color: #FFF;
     font-family: "DM Sans";
     font-size: 20px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     line-height: normal;
-    letter-spacing: -1px;
+    letter-spacing: -0.3px;
     margin: 0px;
+}
+.button-filled:hover {
+    background-color:#002500;
+    outline: solid 1px #016201;
+    transition: all 0.3s;
 }
 
 
