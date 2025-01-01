@@ -15,7 +15,7 @@
         
     }
     .card:hover {
-        text-decoration: none;
+        text-decoration: underline;
     }
     .card-content {
         display: flex;
@@ -54,6 +54,7 @@
 /* Mobile */
 @media (max-width: 600px) {
     .card {
+        text-decoration: none;
         display: flex;
         width: 100%;
         height:fit-content;
@@ -62,6 +63,9 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+    .card:hover {
+        text-decoration: underline;
     }
     
     .card-content {
