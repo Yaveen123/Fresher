@@ -1,13 +1,10 @@
 /* Desktop/Tablet */
 @media (min-width: 601px) {
     .comp-header {
+        width:100%; 
         display: flex;
         justify-content: space-between;
         align-items: center;
-        align-content: space-between;
-        align-self: stretch;
-        flex-wrap: wrap;
-        width:100%;   
     }
 }
 

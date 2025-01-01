@@ -3,7 +3,9 @@
     .main-body {
         display: flex;
         align-items: center;
-        margin-left: 85px;
+        margin: 0px;
+        margin-left: 75px;
+        height:100%;
     } 
 }
 

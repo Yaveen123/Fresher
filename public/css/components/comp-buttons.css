@@ -59,6 +59,7 @@
     border: 1px solid #016201;
     background: #FFF;
     width: fit-content;
+    transition: all 0.1s;
 }
 .button-outlined-text {
     color: #016201;
@@ -70,7 +71,10 @@
     letter-spacing: -1px;
     margin: 0px;
 }
-
+.button-outlined:hover {
+    background-color:#01620130;
+    transition: all 0.3s;
+}
 
 /*MARK:Caution*/
 .button-caution {

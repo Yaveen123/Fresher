@@ -1,0 +1,99 @@
+
+/* Desktop/Tablet */
+@media (min-width: 601px) {
+    .card {
+        display: flex;
+        width: 100%;
+        min-width: 400px;
+        max-width: 800px;
+        padding: 15px 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        flex: 1 0 0;
+    }
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        align-self: stretch;
+    }
+    .card-content-title {
+        color: #000;
+        font-family: "DM Sans";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        margin: 0px;
+    }
+    .card-content-image {
+        height: 278px;
+        min-width: 179px;
+        align-self: stretch;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+    .card-description {
+        color: #000;
+        font-family: "DM Sans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .card {
+        display: flex;
+        width: 100%;
+        height:fit-content;
+        max-width: 800px;
+        padding: 15px 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .card-content {
+        height: fit-content;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-start;
+        gap: 10px;
+        align-self: stretch;
+        overflow: hidden;
+        width:100%;
+    }
+    .card-content-title {
+        flex-grow:1;
+        color: #000;
+        font-family: "DM Sans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        flex: 1 0 0;
+        margin: 0px;
+    }
+    .card-content-image {
+        border-radius: 10px;
+        flex: 1 0 0;
+        max-width: 50%;
+        object-fit: cover;
+    }
+    .card-description {
+        color: #000;
+        font-family: "DM Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0px;
+        align-self: stretch;
+    }
+}

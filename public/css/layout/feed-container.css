@@ -2,15 +2,13 @@
 @media (min-width: 601px) {
     .feed-container {
         display: flex;
-        width: 100%;
+        flex-wrap: wrap;
+        align-self: center;
+        width: 95%;
+        gap: 10px;
         max-width: 1500px;
         padding: 0px 10px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center; /* Center horizontally */
-        gap: 10px;
-        align-self: stretch;
-    }
+        }
 }
 
 /* Mobile */

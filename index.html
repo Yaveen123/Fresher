@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    
+    <title>Fresher</title>
 
     <!-- MARK: Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,26 +21,31 @@
     <link rel="stylesheet" href="css/components/comp-navbar.css">
     <link rel="stylesheet" href="css/components/comp-header.css">
     <link rel="stylesheet" href="css/components/comp-buttons.css">
+    <link rel="stylesheet" href="css/components/comp-titlebar.css">
+    <link rel="stylesheet" href="css/components/comp-cards.css">
     
 </head>
 <body class="main-body">
-    <div class="comp-navbar">
+    <nav class="comp-navbar">
         <div class="comp-navbar-icon-default">
-            <img src="icons/navbar/home.svg" class="comp-navbar-svg">
+            <img src="icons/navbar/home.svg" class="comp-navbar-svg" alt="Home icon">
         </div>
         <div class="comp-navbar-icon-default">
-            <img src="icons/navbar/rss.svg" class="comp-navbar-svg">
+            <img src="icons/navbar/rss.svg" class="comp-navbar-svg" alt="RSS settings icon">
         </div>
         <div class="comp-navbar-icon-default">
-            <img src="icons/navbar/settings.svg" class="comp-navbar-svg">
+            <img src="icons/navbar/settings.svg" class="comp-navbar-svg" alt="General settings icon">
         </div>
         <div class="comp-navbar-icon-default">
-            <img src="images/placeholder.png" class="comp-navbar-svg">
+            <img src="images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
         </div>
-    </div>
+    </nav>
 
     <div class="true-body">
-        <div class="feed-container">
+        <header class="titlebar-container">
+            <img src="icons/other/logo.svg" alt="Fresher Logo">
+        </header>
+        <section class="feed-container">
             <div class="comp-header">
                 <p class="comp-header-text">Feed title</p>
                 <div class="button-outlined">
@@ -47,10 +53,93 @@
                     <p class="button-outlined-text">See more of this feed</p>
                 </div>
             </div>
-        </div>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente porro ipsam tempora facilis libero enim ratione, placeat quisquam commodi atque aliquid autem sequi minus dignissimos. Dolorum explicabo sed corporis quasi!</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            
+            <div class="comp-header">
+                <p class="comp-header-text">Feed title</p>
+                <div class="button-outlined">
+                    <img src="icons/buttons/forward.svg" class="button-icon">
+                    <p class="button-outlined-text">See more of this feed</p>
+                </div>
+            </div>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+            <article class="card">
+                <div class="card-content">
+                    <img src="images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
+                    <p class="card-content-title">Title</p>
+                </div>
+                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
+            </article>
+
+        </section>
     </div>
     
-    
+    <script>
+        //MARK:Need to comment and change
+        console.log(document.documentElement.clientWidth);
+
+        window.addEventListener('resize', () => {
+            if (document.documentElement.clientWidth < 600) {
+                const images = document.querySelectorAll(".card-content-image");
+                const titles = document.querySelectorAll(".card-content-title");
+                images.forEach((image, index) => {
+                    image.style.height = titles[index].offsetHeight + 'px';
+                });
+            } else {
+            const images = document.querySelectorAll(".card-content-image");
+            images.forEach((image) => {
+                image.style.height = '278px';
+            });
+            }
+        });
+    </script>
 
 </body>
 </html>

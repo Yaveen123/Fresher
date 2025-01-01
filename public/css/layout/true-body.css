@@ -2,6 +2,7 @@
 @media (min-width: 601px) {
     .true-body {
         display: flex;
+        flex-direction: column;
         width:100%;
         justify-content: center;
     }
@@ -10,6 +11,6 @@
 /* Mobile */
 @media (max-width: 600px) {
     .true-body {
-        margin-left: 20px;
+        width: 100vw;
     }
 }

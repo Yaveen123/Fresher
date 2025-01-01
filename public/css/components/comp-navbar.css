@@ -16,12 +16,15 @@
         left: 0;
         overflow-x: hidden;
         padding-top: 20px;
+
+        border-right: 1px solid #DDD;
     }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
     .comp-navbar {
+        width: 100vw;
         max-height: 60px;
         display: flex;
         padding: 10px;
@@ -31,7 +34,7 @@
         overflow: hidden;
         position: fixed;
         bottom: 0;
-        width: 100%;
+        
        
         background-color: #fff;
         border-top: 1px solid #DDD;
@@ -61,6 +64,8 @@
 }
 .comp-navbar-icon-default:hover {
     background: rgba(1, 98, 1, 0.10);
+    
+    outline: 1px solid #016201;
     transition: 0.1s;
 
 }
