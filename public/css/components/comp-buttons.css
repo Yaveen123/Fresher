@@ -98,7 +98,7 @@
     border: 1px solid #A80000;
     background: rgba(255, 0, 0, 0.05);
     width: fit-content;
-    text-decoration: 0px;
+    text-decoration: none;
 }
 .button-caution-text {
     color: #A80000;
@@ -114,5 +114,15 @@
     background: rgba(255, 0, 0, 0.10);
     outline: 0.7px solid #A80000;
     transition: all 0.1s;
+}
+
+/*MARK: Containers*/
+.horizontal-button-container {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 6px;
+    align-self: stretch;
+    flex-wrap: wrap;
 }
 

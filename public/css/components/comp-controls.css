@@ -72,14 +72,6 @@
 }
 
 /*MARK: Submit*/
-.submit-container {
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 6px;
-    align-self: stretch;
-    flex-wrap: wrap;
-}
 .submit-button {
     background: url(../../icons/buttons/save.svg) no-repeat scroll 15px 10px;
 

@@ -1,0 +1,117 @@
+.info {
+    margin: 0px;
+    color: #777;
+    font-family: "DM Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-self: stretch;
+}
+
+.feed-outline {
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-bottom: 1px solid #D9D9D9;
+}
+.functional .feed-outline-info-content-titlecontainer-text {
+    color: #000000;
+}
+.functional .feed-outline-info-content-description {
+    color: #016201;
+}
+.broken .feed-outline-info-content-titlecontainer-text {
+    background: url(../../icons/rss/warning.svg) no-repeat scroll 0px 5px;
+    padding-left: 30px;
+    color: #A80000;
+}
+.functional .feed-outline-info-content-description {
+    color: #A80000;
+}
+.requiresrefresh .feed-outline-info-content-description {
+    color: #AD5400;
+}
+.requiresrefresh .feed-outline-info-content-titlecontainer-text {
+    background: url(../../icons/rss/question.svg) no-repeat scroll 0px 5px;
+    padding-left: 30px;
+    color: #AD5400;
+}
+
+.feed-outline-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1 0 0;
+}
+.feed-outline-info-image {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+}
+.feed-outline-info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+.feed-outline-info-content-titlecontainer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    align-self: stretch;
+}
+.feed-outline-info-content-titlecontainer-text {
+    margin: 0px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    align-self: stretch;
+    
+    overflow: hidden;
+    color: #000;
+    text-overflow: ellipsis;
+    font-family: "DM Sans";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1.3px;
+}
+.feed-outline-info-content-titlecontainer-icon {
+    border-radius: 999px;
+    outline: none;
+    transition: all 0.1s;
+}
+.feed-outline-info-content-titlecontainer-icon:hover {
+    outline: 1px solid #00000030;
+    transition: all 0.05s;
+}
+.feed-outline-info-content-description {
+    margin: 0px;
+    
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    align-self: stretch;
+
+    overflow: hidden;
+    color: #A80000;
+    text-overflow: ellipsis;
+    font-family: "DM Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.feed-outline-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
