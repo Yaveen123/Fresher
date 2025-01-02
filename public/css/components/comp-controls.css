@@ -5,6 +5,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     gap: -48px;
+    margin-bottom: 20px;
 }
 .image_upload:hover > .image_upload-image {
     outline: 1px solid #016201;
@@ -17,5 +18,93 @@
     margin-bottom: -48px;
 }
 
-/*MARK: Textbox
+/*MARK: Textbox*/
+.control-label {
+    color: #000;
+    font-family: "DM Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0px;
+}
+.textbox {
+    border: none;
+    display: flex;
+    min-width: 150px;
+    max-width: 297px;
+    padding: 10px 16px 10px 14px;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    border-bottom: 2px solid #D9D9D9;
+    background: #F5F5F5;
 
+    overflow: hidden;
+    color: #000;
+    text-overflow: ellipsis;
+    font-family: "DM Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: all 0.1s;
+}
+.textbox:hover {
+    
+    background: #01620120;
+    border-bottom: 2px solid #016201;
+    transition: all 0.1s;
+}
+.textbox:focus {
+    background: #01620130;
+    outline: solid 2px #016201;
+    border: none;
+    border-bottom: 2px solid #016201;
+    transition: all 0.1s;}
+
+.basic-control-wrapper {
+    margin: 0px;
+    height:fit-content;
+    padding-bottom: 10px;
+}
+
+/*MARK: Submit*/
+.submit-container {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 6px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+.submit-button {
+    background: url(../../icons/buttons/save.svg) no-repeat scroll 15px 10px;
+
+    text-decoration: none;
+    display: flex;
+    padding: 10px 20px 10px 47px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 51px;
+    border: 1px solid #FFF;
+    background-color: #016201;
+    width: fit-content;
+    transition: all 0.1s;
+
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    margin: 0px;
+}
+.submit-button:hover {
+    background-color:#002500;
+    outline: solid 1px #016201; /*'Panwp' (2015) When 1 px border is added to div, Div size increases, Don't want to do that, Accessed 31 Dec 2024 https://stackoverflow.com/questions/3254587/when-1-px-border-is-added-to-div-div-size-increases-dont-want-to-do-that*/
+    transition: all 0.3s;
+}

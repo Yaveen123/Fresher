@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../css/layout/main-body.css">
     <link rel="stylesheet" href="../css/layout/true-body.css">
     <link rel="stylesheet" href="../css/layout/settings-main.css">
-    <link rel="stylesheet" href="../css/layout/settings-account.css">
     <link rel="stylesheet" href="../css/test.css">
 
     <!-- components -->
@@ -48,7 +47,7 @@
         <header class="titlebar-container">
             <img src="../icons/other/logo.svg" alt="Fresher Logo">
         </header>
-        <section class="settings-container">
+        <form action="" class="settings-container">
             <div class="header-with-breadcrumb">
                 <div class="breadcrumb-container">
                     <a href="../html/settings-home.html" class="breadcrumb-container-text">Settings</a>
@@ -58,13 +57,44 @@
                     <p class="header-container-text">Account</p>
                 </div>
             </div>
-            <label for="image" class="image_upload">
-                <input type="file" name="image" id="image" style="display: none;">
-                <img class="image_upload-image" src="../images/placeholder.png" alt="Your profile picture">
-                <img src="../icons/settings/Edit.svg" alt="Edit profile picture"> 
-                <!-- Kociaj, P (2016) How can I upload a new file on click of image button, Accessed 1 Jan 2025-->
-            </label>
-        </section>
+            <div class="basic-control-wrapper">
+                <label for="image" class="image_upload">
+                    <input type="file" name="image" id="image" style="display: none;">
+                    <img class="image_upload-image" src="../images/placeholder.png" alt="Your profile picture">
+                    <img src="../icons/settings/Edit.svg" alt="Edit profile picture"> 
+                    <!-- Kociaj, P (2016) How can I upload a new file on click of image button, Accessed 1 Jan 2025-->
+                </label>
+            </div>
+            
+
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="acc-name">Account name</label>
+                <input class="textbox" type="text" id="acc-name" name="acc-name" value="Add name here">
+            </div>
+
+            <!-- THESE ARE NOT INSIDE THE FORM!!!!! -->
+            <!-- Reset button ///////////////////// -->
+            <div class="basic-control-wrapper" style="display:flex; flex-direction: column; gap:10px">
+                <label class="control-label" for="acc-name">More options</label>
+                <a class="button-caution" href="https://google.com">
+                    <img src="../icons/buttons/bin.svg" class="button-icon">
+                    <p class="button-caution-text">Reset account</p>
+                </a>
+            </div>
+            <!-- Reset end //////////////////////// -->
+
+            <div class="submit-container">
+                <input class="submit-button" type="submit" value="Save">
+
+                <!-- Cancel button /////////////////////////////// -->
+                <a class="button-tonal" href="javascript:window.history.back();"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
+                    <img src="../icons/buttons/cancel.svg" class="button-icon">
+                    <p class="button-tonal-text">Cancel</p>
+                </a>
+                <!-- Cancel end ////////////////////////////////// -->
+            </div>
+            
+        </form>
     </div>
 </body>
 </html>

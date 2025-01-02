@@ -43,6 +43,7 @@
     border-radius: 51px;
     background: #0162011a;
     width: fit-content;
+    text-decoration: none;
 }
 .button-tonal-text {
     color: #016201;
@@ -54,7 +55,11 @@
     letter-spacing: -1px;
     margin: 0px;
 }
-
+.button-tonal:hover {
+    background-color:#01620140;
+    outline: solid 1px #016201; /*'Panwp' (2015) When 1 px border is added to div, Div size increases, Don't want to do that, Accessed 31 Dec 2024 https://stackoverflow.com/questions/3254587/when-1-px-border-is-added-to-div-div-size-increases-dont-want-to-do-that*/
+    transition: all 0.3s;
+}
 
 /*MARK:Outlined*/
 .button-outlined {
@@ -93,6 +98,7 @@
     border: 1px solid #A80000;
     background: rgba(255, 0, 0, 0.05);
     width: fit-content;
+    text-decoration: 0px;
 }
 .button-caution-text {
     color: #A80000;
@@ -104,5 +110,9 @@
     letter-spacing: -1px;
     margin: 0px;
 }
-
+.button-caution:hover {
+    background: rgba(255, 0, 0, 0.10);
+    outline: 0.7px solid #A80000;
+    transition: all 0.1s;
+}
 
