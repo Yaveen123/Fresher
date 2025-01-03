@@ -1,1 +1,93 @@
-<p>advanced</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Fresher</title>
+
+    <!-- MARK: Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    
+    <!--MARK: CSS -->
+    <!-- layout -->
+    <link rel="stylesheet" href="../css/layout/main-body.css">
+    <link rel="stylesheet" href="../css/layout/true-body.css">
+    <link rel="stylesheet" href="../css/layout/settings-main.css">
+    <link rel="stylesheet" href="../css/test.css">
+
+    <!-- components -->
+    <link rel="stylesheet" href="../css/components/comp-navbar.css">
+    <link rel="stylesheet" href="../css/components/comp-header.css">
+    <link rel="stylesheet" href="../css/components/comp-buttons.css">
+    <link rel="stylesheet" href="../css/components/comp-titlebar.css">
+    <link rel="stylesheet" href="../css/components/comp-cards.css">
+    <link rel="stylesheet" href="../css/components/comp-batteredheader.css">
+    <link rel="stylesheet" href="../css/components/comp-controls.css">
+    
+</head>
+<body class="main-body">
+    <nav class="comp-navbar">
+        <a class="comp-navbar-icon-default" href="../html/feed.html">
+            <img src="../icons/navbar/home.svg" class="comp-navbar-svg" alt="Home icon">
+        </a>
+        <a class="comp-navbar-icon-default" href="../html/settings-rss.html">
+            <img src="../icons/navbar/rss.svg" class="comp-navbar-svg" alt="RSS settings icon">
+        </a>
+        <a class="comp-navbar-icon-default" href="../html/settings-home.html">
+            <img src="../icons/navbar/settings.svg" class="comp-navbar-svg" alt="General settings icon">
+        </a>
+        <a class="comp-navbar-icon-default" href="../html/settings-account.html">
+            <img src="../images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
+        </a>
+    </nav>
+
+    <div class="true-body">
+        <header class="titlebar-container">
+            <img src="../icons/other/logo.svg" alt="Fresher Logo">
+        </header>
+        <form action="" class="settings-container">
+            <div class="header-with-breadcrumb">
+                <div class="breadcrumb-container">
+                    <a href="../html/settings-home.html" class="breadcrumb-container-text">Settings</a>
+                </div>
+                <div class="header-container">
+                    <img src="../icons/batteredheader/address.svg" alt="A non-functional arrow pointing towards the page heading.">
+                    <p class="header-container-text">Advanced</p>
+                </div>
+            </div>
+            
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="view">Show feed provider</label>
+                <select class="dropdown" type="text" id="view" name="view">
+                    <option value="auto">Let Fresher decide</option>
+                    <option value="large">Always</option>
+                    <option value="normal">Never</option>
+                </select>
+            </div>
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="view">Show age of article</label>
+                <select class="dropdown" type="text" id="view" name="view">
+                    <option value="auto">Let Fresher decide</option>
+                    <option value="large">Always</option>
+                    <option value="normal">Never</option>
+                </select>
+            </div>
+
+
+            <div class="horizontal-button-container">
+                <input class="submit-button" type="submit" value="Save">
+
+                <!-- Cancel button /////////////////////////////// -->
+                <a class="button-tonal" href="javascript:window.history.back();"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
+                    <img src="../icons/buttons/cancel.svg" class="button-icon">
+                    <p class="button-tonal-text">Cancel</p>
+                </a>
+                <!-- Cancel end ////////////////////////////////// -->
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>

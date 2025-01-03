@@ -29,10 +29,11 @@
     margin: 0px;
 }
 .textbox {
+    outline: solid 2px #FFF;
     border: none;
     display: flex;
-    min-width: 150px;
-    max-width: 297px;
+    width: 218px;
+    max-width: 218px;
     padding: 10px 16px 10px 14px;
     align-items: center;
     align-content: center;
@@ -53,7 +54,6 @@
     transition: all 0.1s;
 }
 .textbox:hover {
-    
     background: #01620120;
     border-bottom: 2px solid #016201;
     transition: all 0.1s;
@@ -63,7 +63,8 @@
     outline: solid 2px #016201;
     border: none;
     border-bottom: 2px solid #016201;
-    transition: all 0.1s;}
+    transition: all 0.1s;
+}
 
 .basic-control-wrapper {
     margin: 0px;
@@ -75,6 +76,7 @@
 .submit-button {
     background: url(../../icons/buttons/save.svg) no-repeat scroll 15px 10px;
 
+    
     text-decoration: none;
     display: flex;
     padding: 10px 20px 10px 47px;
@@ -98,5 +100,45 @@
 .submit-button:hover {
     background-color:#002500;
     outline: solid 1px #016201; /*'Panwp' (2015) When 1 px border is added to div, Div size increases, Don't want to do that, Accessed 31 Dec 2024 https://stackoverflow.com/questions/3254587/when-1-px-border-is-added-to-div-div-size-increases-dont-want-to-do-that*/
+    transition: all 0.3s;
+}
+
+/*MARK:Dropdown*/
+.dropdown {
+    width: 248px;
+    border: none;
+
+    display: flex;
+    padding: 10px 16px 10px 14px;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 5px;
+    background: #F5F5F5;
+    outline: solid 2px #FFF;
+
+    overflow: hidden;
+    color: #000;
+    text-overflow: ellipsis;
+    font-family: "DM Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    flex: 1 0 0;
+}
+.dropdown:hover {
+    background: #01620120;
+    transition: all 0.1s;
+}
+.dropdown:focus {
+    background: #01620130;
+    outline: solid 2px #016201;
+    border: none;   
     transition: all 0.3s;
 }
