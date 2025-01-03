@@ -29,26 +29,36 @@
 
 </head>
 <body class="main-body">
-    <nav class="comp-navbar">
+    <!-- Navbar -->
+    <nav class="comp-navbar"> 
+        <!-- Home -->
         <a class="comp-navbar-icon-default" href="../html/feed.html">
             <img src="../icons/navbar/home.svg" class="comp-navbar-svg" alt="Home icon">
         </a>
+        <!-- RSS -->
         <a class="comp-navbar-icon-default" href="../html/settings-rss.html">
             <img src="../icons/navbar/rss.svg" class="comp-navbar-svg" alt="RSS settings icon">
         </a>
+        <!-- Settings -->
         <a class="comp-navbar-icon-default" href="../html/settings-home.html">
             <img src="../icons/navbar/settings.svg" class="comp-navbar-svg" alt="General settings icon">
         </a>
+        <!-- Account -->
         <a class="comp-navbar-icon-default" href="../html/settings-account.html">
             <img src="../images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
         </a>
     </nav>
 
     <div class="true-body">
+        <!-- Titlebar with "Fresher" -->
         <header class="titlebar-container">
             <img src="../icons/other/logo.svg" alt="Fresher Logo">
         </header>
+
+        <!-- Container that holds the settings -->
         <section action="" class="settings-container">
+
+            <!-- Header section -->
             <div class="header-with-breadcrumb">
                 <div class="breadcrumb-container">
                     <a href="../html/settings-home.html" class="breadcrumb-container-text">Settings</a>
@@ -59,73 +69,99 @@
                 </div>
             </div>
 
+            <!-- Some information -->
             <p class="info">Drag feeds to reorder them</p>
 
+            <!-- Add new feed and refresh buttons -->
             <div class="horizontal-button-container">
+                <!-- Add new feed button -->
                 <a class="button-filled" href="../html/settings-rss-feed.html"> 
                     <img src="../icons/buttons/add_feed.svg" class="button-icon">
                     <p class="button-filled-text">Add new feed</p>
                 </a>
+                
+                <!-- Refresh button -->
                 <a class="button-tonal" href="https://google.com"> 
                     <img src="../icons/buttons/refresh.svg" class="button-icon">
                     <p class="button-tonal-text">Refresh</p>
                 </a>
             </div>
 
+            <!-- Demo of a Functional feed -->
             <div class="feed-outline functional">
                 <div class="feed-outline-info ">
+                    <!-- Feed image -->
                     <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
                     <div class="feed-outline-info-content">
                         <div class="feed-outline-info-content-titlecontainer">
+                            <!-- Feed title -->
                             <p class="feed-outline-info-content-titlecontainer-text">Feed title</p>
                         </div>
+                        <!-- Feed description -->
                         <p class="feed-outline-info-content-description">Functional</p>
                     </div>
                 </div>
+                <!-- Buttons -->
                 <div class="feed-outline-actions">
+                    <!-- Edit button -->
                     <a href="../html/settings-rss-feed.html">
                         <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
                     </a>
+                    <!-- Delete button -->
                     <a href="https://google.com">
                         <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
                     </a>
                 </div>
             </div>
 
+            <!-- Demo of a non functional feed -->
             <div class="feed-outline broken">
                 <div class="feed-outline-info ">
+                    <!-- Feed image -->
                     <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
                     <div class="feed-outline-info-content">
                         <div class="feed-outline-info-content-titlecontainer">
+                            <!-- Feed title -->
                             <p class="feed-outline-info-content-titlecontainer-text">Feed title</p>
                         </div>
+                        <!-- Feed description -->
                         <p class="feed-outline-info-content-description">Cannot reach feed</p>
                     </div>
                 </div>
+                <!-- Buttons -->
                 <div class="feed-outline-actions">
+                    <!-- Edit button -->
                     <a href="../html/settings-rss-feed.html">
                         <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
                     </a>
+                    <!-- Delete button -->
                     <a href="https://google.com">
                         <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
                     </a>
                 </div>
             </div>
 
+            <!-- Demo of a feed that requires a refresh  -->
             <div class="feed-outline requiresrefresh">
                 <div class="feed-outline-info ">
+                    <!-- Feed image -->
                     <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
                     <div class="feed-outline-info-content">
                         <div class="feed-outline-info-content-titlecontainer">
+                            <!-- Feed title -->
                             <p class="feed-outline-info-content-titlecontainer-text">Feed title</p>
                         </div>
-                        <p class="feed-outline-info-content-description">Cannot reach feed</p>
+                        <!-- Feed description -->
+                        <p class="feed-outline-info-content-description">Click the 'Refresh' button</p>
                     </div>
                 </div>
+                <!-- Buttons -->
                 <div class="feed-outline-actions">
+                    <!-- Edit button -->
                     <a href="../html/settings-rss-feed.html">
                         <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
                     </a>
+                    <!-- Delete button -->
                     <a href="https://google.com">
                         <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
                     </a>

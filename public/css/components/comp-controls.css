@@ -7,7 +7,7 @@
     gap: -48px;
     margin-bottom: 20px;
 }
-.image_upload:hover > .image_upload-image {
+.image_upload:hover > .image_upload-image { 
     outline: 1px solid #016201;
 }
 .image_upload-image {
@@ -19,7 +19,8 @@
 }
 
 /*MARK: Textbox*/
-.control-label {
+/*Label above control*/
+.control-label { 
     color: #000;
     font-family: "DM Sans";
     font-size: 16px;
@@ -28,6 +29,7 @@
     line-height: normal;
     margin: 0px;
 }
+/*Textbox*/
 .textbox {
     outline: solid 2px #FFF;
     border: none;
@@ -66,6 +68,7 @@
     transition: all 0.1s;
 }
 
+/* Wraps the control and label for proper spacing */
 .basic-control-wrapper {
     margin: 0px;
     height:fit-content;
@@ -108,6 +111,14 @@
     width: 248px;
     border: none;
 
+    /* this is for the text inside */
+    /* for compatibility, display:-webkit-box is before display:flex*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    flex: 1 0 0;
+
     display: flex;
     padding: 10px 16px 10px 14px;
     align-items: center;
@@ -125,12 +136,6 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    flex: 1 0 0;
 }
 .dropdown:hover {
     background: #01620120;

@@ -29,26 +29,36 @@
 
 </head>
 <body class="main-body">
-    <nav class="comp-navbar">
+    <!-- Navbar -->
+    <nav class="comp-navbar"> 
+        <!-- Home -->
         <a class="comp-navbar-icon-default" href="../html/feed.html">
             <img src="../icons/navbar/home.svg" class="comp-navbar-svg" alt="Home icon">
         </a>
+        <!-- RSS -->
         <a class="comp-navbar-icon-default" href="../html/settings-rss.html">
             <img src="../icons/navbar/rss.svg" class="comp-navbar-svg" alt="RSS settings icon">
         </a>
+        <!-- Settings -->
         <a class="comp-navbar-icon-default" href="../html/settings-home.html">
             <img src="../icons/navbar/settings.svg" class="comp-navbar-svg" alt="General settings icon">
         </a>
+        <!-- Account -->
         <a class="comp-navbar-icon-default" href="../html/settings-account.html">
             <img src="../images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
         </a>
     </nav>
 
     <div class="true-body">
+        <!-- Titlebar with "Fresher" -->
         <header class="titlebar-container">
             <img src="../icons/other/logo.svg" alt="Fresher Logo">
         </header>
-        <section action="" class="settings-container">
+
+        <!-- Container that holds the settings, which also acts as the form-->
+        <form class="settings-container" action="">
+
+            <!-- Header section -->
             <div class="header-with-breadcrumb">
                 <div class="breadcrumb-container">
                     <a href="../html/settings-home.html" class="breadcrumb-container-text">Settings</a>
@@ -61,63 +71,70 @@
                 </div>
             </div>
 
-            <form class="settings-container" action="">
-                <div class="basic-control-wrapper">
-                    <label class="control-label" for="feed-name">Feed name</label>
-                    <input class="textbox" type="text" id="feed-name" name="feed-name" value="Textbox">
-                </div>
-                <div class="basic-control-wrapper">
-                    <label class="control-label" for="url">Feed URL</label>
-                    <input class="textbox" type="text" id="url" name="url" value="Textbox">
-                </div>
-                <div class="basic-control-wrapper">
-                    <label class="control-label" for="no-articles">Max. number of articles on home page</label>
-                    <input class="textbox" type="number" id="no-articles" name="no-articles" value="0" min="1" max="15">
-                </div>
-                <div class="basic-control-wrapper">
-                    <label class="control-label" for="view">View</label>
-                    <select class="dropdown" type="text" id="view" name="view">
-                        <option value="auto">Let Fresher decide</option>
-                        <option value="large">Always large</option>
-                        <option value="normal">Always normal</option>
-                    </select>
-                </div>
+            <!-- Feed name textbox -->
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="srf-name">Feed name</label>
+                <input class="textbox" type="text" id="srf-name" name="feed-name" value="Textbox">
+            </div>
 
-                <div class="basic-control-wrapper">
-                    <label class="control-label" for="view">Image</label>
-                    <select class="dropdown" type="text" id="view" name="view">
-                        <option value="auto">Let Fresher decide</option>
-                        <option value="large">Try to always show image</option>
-                        <option value="normal">Never show image</option>
-                    </select>
-                </div>
+            <!-- Feed URL textbox -->
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="srf-url">Feed URL</label>
+                <input class="textbox" type="text" id="srf-url" name="feed-url" value="Textbox">
+            </div>
 
-                <div class="basic-control-wrapper">
-                    <label class="control-label" for="view">Description</label>
-                    <select class="dropdown" type="text" id="view" name="view">
-                        <option value="auto">Let Fresher decide</option>
-                        <option value="large">Try to always show description</option>
-                        <option value="normal">Never show description</option>
-                    </select>
-                </div>
+            <!-- Feed articles number input. Range: 0-15 -->
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="srf-articlenum">Max. number of articles on home page</label>
+                <input class="textbox" type="number" id="srf-articlenum" name="feed-article_num" value="0" min="1" max="15">
+            </div>
 
-                <div class="horizontal-button-container">
-                    <input class="submit-button" type="submit" value="Save">
-    
-                    <!-- Cancel button /////////////////////////////// -->
-                    <a class="button-tonal" href="javascript:window.history.back();"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
-                        <img src="../icons/buttons/cancel.svg" class="button-icon">
-                        <p class="button-tonal-text">Cancel</p>
-                    </a>
-                    <!-- Cancel end ////////////////////////////////// -->
-                    <!-- Delete button /////////////////////////////// -->
-                    <a style="border-radius: 999px;" href="https://google.com"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg">
-                    </a>
-                    <!-- Delete end ////////////////////////////////// -->
-                </div>
-            </form>
-        </section>
+            <!-- View dropdown. Options: auto large normal -->
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="srf-view">View</label>
+                <select class="dropdown" type="text" id="srf-view" name="feed-view_type">
+                    <option value="auto">Let Fresher decide</option>
+                    <option value="large">Always large</option>
+                    <option value="normal">Always normal</option>
+                </select>
+            </div>
+
+            <!-- Show image dropdown. Options: auto always never -->
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="srf-image">Image</label>
+                <select class="dropdown" type="text" id="srf-image" name="feed-show_image">
+                    <option value="auto">Let Fresher decide</option>
+                    <option value="always">Try to always show image</option>
+                    <option value="never">Never show image</option>
+                </select>
+            </div>
+
+            <!-- Show description dropdown. Options: auto always never -->
+            <div class="basic-control-wrapper">
+                <label class="control-label" for="srf-description">Description</label>
+                <select class="dropdown" type="text" id="srf-description" name="feed-show_description">
+                    <option value="auto">Let Fresher decide</option>
+                    <option value="always">Try to always show description</option>
+                    <option value="never">Never show description</option>
+                </select>
+            </div>
+
+            <!-- Submit, cancel, and delete buttons -->
+            <div class="horizontal-button-container">
+                <!-- Submit button -->
+                <input class="submit-button" type="submit" value="Save">
+
+                <!-- Cancel button -->
+                <a class="button-tonal" href="javascript:window.history.back();"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
+                    <img src="../icons/buttons/cancel.svg" class="button-icon">
+                    <p class="button-tonal-text">Cancel</p>
+                </a>
+                <!-- Delete button -->
+                <a style="border-radius: 999px;" href="https://google.com"> 
+                    <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg">
+                </a>
+            </div> 
+        </form>
     </div>
 </body>
 </html>

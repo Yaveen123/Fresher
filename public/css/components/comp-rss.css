@@ -28,9 +28,6 @@
     padding-left: 30px;
     color: #A80000;
 }
-.functional .feed-outline-info-content-description {
-    color: #A80000;
-}
 .requiresrefresh .feed-outline-info-content-description {
     color: #AD5400;
 }
