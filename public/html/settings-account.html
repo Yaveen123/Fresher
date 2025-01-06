@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="../css/components/comp-cards.css">
     <link rel="stylesheet" href="../css/components/comp-batteredheader.css">
     <link rel="stylesheet" href="../css/components/comp-controls.css">
+
+    <script src="../scripts/account-settings.js"></script>
+
+    <script>fetchAccountSettings()</script>
     
 </head>
 <body class="main-body">
@@ -55,7 +59,7 @@
         </header>
 
         <!-- Container that holds the settings, also acts as a form -->
-        <form action="" class="settings-container">
+        <form action="/api/editAccountSettings" method="POST" class="settings-container">
 
             <!-- Header section -->
             <div class="header-with-breadcrumb">
@@ -82,7 +86,7 @@
             <!-- Change account name -->
             <div class="basic-control-wrapper">
                 <label class="control-label" for="acc-name">Account name</label>
-                <input class="textbox" type="tel" id="acc-name" name="account_name" value="Add name here">
+                <input class="textbox" type="tel" id="acc-name" name="account_name" value="Loading...">
             </div>
 
             <!-- Reset account button (doesn't submit data) -->

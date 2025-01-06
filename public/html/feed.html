@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="../css/components/comp-buttons.css">
     <link rel="stylesheet" href="../css/components/comp-titlebar.css">
     <link rel="stylesheet" href="../css/components/comp-cards.css">
+
+    <!-- Client side scripts (JS) -->
+    <script src="../scripts/feed.js"></script>
     
 </head>
 <body class="main-body">
@@ -44,6 +47,10 @@
         <a class="comp-navbar-icon-default" href="../html/settings-account.html">
             <img src="../images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
         </a>
+        <!-- Log out temp -->
+        <a class="comp-navbar-icon-default" href="">
+            <img src="../icons/rss/delete rss.svg" class="comp-navbar-svg" alt="Account profile picture">
+        </a>
     </nav>
 
     <div class="true-body">
@@ -56,7 +63,8 @@
         <section class="feed-container">
             <!-- Contains the title of the feed -->
             <div class="comp-header">
-                <p class="comp-header-text">Feed title</p>  <!-- Title of the feed -->
+                <script>testFetch()</script>
+                <p class="comp-header-text" id="test-feed-title">Feed title</p>  <!-- Title of the feed -->
                 <div class="button-outlined">               <!-- Button which says "See more of this feed" -->
                     <img src="../icons/buttons/forward.svg" class="button-icon" alt="Forward icon">
                     <p class="button-outlined-text">See more of this feed</p>
@@ -101,31 +109,9 @@
         </section>
     </div>
     
-    <script>
-        //MARK:Need to comment and change
-        console.log(document.documentElement.clientWidth);
-        if (document.documentElement.clientWidth < 600) {
-                const images = document.querySelectorAll(".card-content-image");
-                const titles = document.querySelectorAll(".card-content-title");
-                images.forEach((image, index) => {
-                    image.style.height = titles[index].offsetHeight + 'px';
-                });
-            }
-        window.addEventListener('resize', () => {
-            if (document.documentElement.clientWidth < 600) {
-                const images = document.querySelectorAll(".card-content-image");
-                const titles = document.querySelectorAll(".card-content-title");
-                images.forEach((image, index) => {
-                    image.style.height = titles[index].offsetHeight + 'px';
-                });
-            } else {
-            const images = document.querySelectorAll(".card-content-image");
-            images.forEach((image) => {
-                image.style.height = '278px';
-            });
-            }
-        });
-    </script>
+    <script> makeArticleImageHeightResponsive(); </script>
+
+    
 
 </body>
 </html>
