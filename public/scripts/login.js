@@ -1,31 +1,27 @@
-import {account} from '../scripts/appwrite.js';
-import '../css/components/comp-buttons.css';
+import { account } from './appwrite.js';
 
 const loginBtn = document.getElementById("login-button");
 const logoutBtn = document.getElementById("logout-button");
 const profileScreen = document.getElementById("profile-screen");
 const loginScreen = document.getElementById("login-screen");
 
-document.getElementById("login-button").addEventListener ("click", test(), false);
-
-function test() {
-    console.log("WHAT")
-}
+loginBtn.addEventListener("click", handleLogin, false);
+logoutBtn.addEventListener("click", handleLogout, false);
 
 async function handleLogin() {
-    console.log("helo")
+    console.log("helo");
     account.createOAuth2Session(
-        OAuthProvider.Google,
+        Appwrite.OAuthProvider.Google,
         'http://localhost:8000/',
         'http://localhost:8000/fail'
-    )
+    );
 }
 
 async function getUser() {
     try {
-        const user = await account.get()
+        const user = await account.get();
         renderProfileScreen(user);
-    } catch(error) {
+    } catch (error) {
         renderLoginScreen();
     }
 }
@@ -34,15 +30,16 @@ function renderLoginScreen() {
     loginScreen.style.display = '';
 }
 
-async function renderProfileScreen (user) {
-    document.getElementById("temp-login-status").innerHTML = user;
+async function renderProfileScreen(user) {
+    console.log(user);
+    document.getElementById("temp-login-status").innerHTML = user.name;
     profileScreen.style.display = '';
 }
 
-async function handleLogout () {
+async function handleLogout() {
     account.deleteSession('current');
     profileScreen.style.display = 'none';
-    renderLoginScreen;
+    renderLoginScreen();
 }
 
-getUser()
+getUser();
