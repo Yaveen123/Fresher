@@ -37,7 +37,6 @@ async function renderProfileScreen(user) {
     document.getElementById("temp-login-status").innerHTML = user.name;
     profileScreen.style.display = ''; //‘Blackus’ (2015) Remove Style on Element, Accessed 6 Jan 2025 https://stackoverflow.com/questions/18691655/remove-style-on-element 
 }
-
 async function handleLogout() {
     account.deleteSession('current');
     profileScreen.style.display = 'none';
