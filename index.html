@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/components/comp-buttons.css">
     
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-
+    <script type="module" src="/scripts/login.js"></script>
 </head>
 <body class="landing-body">
     <div class="text-container">
@@ -30,9 +30,19 @@
     </div>
 
     <!-- Sign in with Google button -->
-    <a class="button-filled" href="../html/feed.html">
-        <img src="../icons/buttons/Google icon.svg" class="button-icon">
-        <p class="button-filled-text">Sign in with Google</p>
-    </a>
+    <div id="login-screen">
+        <button class="button-filled" id="login-button" type="button">
+            <img src="../icons/buttons/Google icon.svg" class="button-icon">
+            <p class="button-filled-text">Sign in with Google</p>
+        </button>
+    </div>
+
+    <div id="profile-screen" style="display: none;">
+        <p id="temp-login-status">No user logged in right now</p>
+        <button id="logout-button">Logout</button>
+    </div>
+    
+
+    
 </body>
 </html>

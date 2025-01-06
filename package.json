@@ -11,8 +11,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "appwrite": "^16.1.0",
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
+    "node-appwrite": "^14.1.0",
     "sqlite3": "^5.1.7"
   }
 }

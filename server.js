@@ -1,3 +1,5 @@
+
+const sdk = require('node-appwrite');
 const express = require("express");
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require("body-parser");
@@ -5,10 +7,40 @@ const path = require("path");
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+
+
+
+// let client = new sdk.Client();
+
+// client
+//     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+//     .setProject('677b9d6a003b20df0022') // Your project ID
+//     .setKey('standard_70a78eb68a7cc00b5be270fe76efc1b5a5796330f98c939dd1589c13f145adb26558d5aeb5df05cbccac82ccf682ffd675897aa88ca9f5e86695fc991f39024a4cf57785748472edb9e7f15b6d7643305884088dbb9db42f23de8ee35728324663b5af27f4f8f0ae678ee2963d6980acd83e642dc4fb40f477ab3578f15c1297') // Your secret API key
+//     .setSelfSigned() // Use only on dev mode with a self-signed SSL cert
+// ;
+
+// let users = new sdk.Users(client);
+// let promise = users.create(sdk.ID.unique(), "email@example.com", "+123456789", "password", "Walter O'Brien");
+
+// promise.then(function (response) {
+//     console.log(response);
+// }, function (error) {
+//     console.log(error);
+// });
+
+
+
+
+
+
+
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(8000, () => console.log("Server is running on Port 8000, visit http://localhost:8000/ or http://127.0.0.1:8000 to access your website") );
