@@ -23,18 +23,47 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script type="module" src="./scripts/login.js"></script>
     
+    <style>
+        #temp-login-status {
+            color: var(--Accent-Green, #016201);
+            text-align: center;
+            font-family: "DM Sans";
+            font-size: 52px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0px;
+        }
+        #logout-button {
+            background: none;
+            border:none;
+            text-decoration: underline;
+            color: #525252;
+        }
+        #profile-screen {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        #login-button {
+            border: 0px;
+            align-self: center;
+        }
+    </style>
 </head>
 <body class="landing-body">
-    <div class="text-container">
-        <!-- Fresher logo -->
-        <img src="icons/other/logo-large.svg" alt="Fresher logo">
-        
-        <!-- Hero description -->
-        <p class="body-text">Every feed. One place.</p>
-    </div>
+    
 
     <!-- Sign in with Google button -->
-    <div id="login-screen">
+    <div id="login-screen"  style="display: none;">
+        <div class="text-container">
+            <!-- Fresher logo -->
+            <img src="icons/other/logo-large.svg" alt="Fresher logo">
+            
+            <!-- Hero description -->
+            <p class="body-text">Every feed. One place.</p>
+        </div>
+
         <button class="button-filled" id="login-button" type="button">
             <img src="../icons/buttons/Google icon.svg" class="button-icon">
             <p class="button-filled-text">Sign in with Google</p>
@@ -43,10 +72,13 @@
 
     <div id="profile-screen" style="display: none;">
         <p id="temp-login-status">No user logged in right now</p>
+
+        <a href="/html/feed.html" class="button-tonal" id="login-button" type="button">
+            <img src="../icons/buttons/rocket.svg" class="button-icon">
+            <p class="button-tonal-text">Launch Fresher</p>
+        </a>
+
         <button id="logout-button">Logout</button>
     </div>
-    
-
-    
 </body>
 </html>

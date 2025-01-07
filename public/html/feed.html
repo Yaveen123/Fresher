@@ -6,6 +6,8 @@
     <title>Fresher</title>
     <link rel="icon" type="image/x-icon" href="../icons/other/fresherfavicon.ico">
 
+    <script  src="../scripts/loginCheck.js" type="module" defer></script>
+
     <!-- MARK: Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +28,11 @@
     <link rel="stylesheet" href="../css/components/comp-cards.css">
 
     <!-- Client side scripts (JS) -->
-    <script src="../scripts/feed.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+    <script  src="../scripts/feed.js"></script>
 </head>
 <body class="main-body">
     <!-- Navbar -->
@@ -48,10 +53,6 @@
         <a class="comp-navbar-icon-default" href="../html/settings-account.html">
             <img src="../images/placeholder.png" class="comp-navbar-svg" alt="Account profile picture">
         </a>
-        <!-- Log out temp -->
-        <a class="comp-navbar-icon-default" href="">
-            <img src="../icons/rss/delete rss.svg" class="comp-navbar-svg" alt="Account profile picture">
-        </a>
     </nav>
 
     <div class="true-body">
@@ -64,7 +65,6 @@
         <section class="feed-container">
             <!-- Contains the title of the feed -->
             <div class="comp-header">
-                <script>testFetch()</script>
                 <p class="comp-header-text" id="test-feed-title">Feed title</p>  <!-- Title of the feed -->
                 <div class="button-outlined">               <!-- Button which says "See more of this feed" -->
                     <img src="../icons/buttons/forward.svg" class="button-icon" alt="Forward icon">
@@ -111,6 +111,7 @@
     </div>
     
     <script> makeArticleImageHeightResponsive(); </script>
+
 
     
 
