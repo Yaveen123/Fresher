@@ -39,6 +39,19 @@ app.get('/api/accountSettings', (req, res) => {                            // th
     }
 );
 });
+// Get advanced settings
+app.get('/api/advancedSettings', (req, res) => {                            // the callback function runs
+    const googleId = req.query.google_id; // Get google_id from query parameters
+
+    db.all(                                                                  //Retrieve the data from the database
+    getForSpecificUser,                                                    //run the SQL query 
+    [googleId],                                                               // with the following parameters
+    (err, rows) => {                                                       // callback function for the database retrival function
+        if (err) return console.error(err.message);
+        res.json(rows);                                                    // The data is posted to the endpoint
+    }
+);
+});
 
 
 
@@ -103,6 +116,26 @@ app.post('/api/editAccountSettings', (req, res) => {                           /
     res.end();
 });
 
+//Edit account details
+const editAdvancedSettings = `
+UPDATE account
+SET advanced_show_provider = ?, advanced_show_age = ?
+WHERE google_id = ?
+`; //SQL query
+
+app.post('/api/editAdvancedSettings', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
+    const { advanced_show_provider, advanced_show_age, google_id } = req.body;
+    db.run(
+        editAdvancedSettings,
+        [advanced_show_provider, advanced_show_age, google_id],
+        function(err) {
+            if (err) return console.error(err.message);
+            console.log(`SQL editAdvancedSettings, Rows updated ${this.changes}`);
+    });
+    res.statusCode = 302;                                                       // Redirects back.
+    res.setHeader("Location", "/html/settings-advanced.html");                   // Nagle, D. (2016) How to res.send to a new URL in Node.js/Express?, Accessed Jan 6 2025 https://stackoverflow.com/questions/40497534/how-to-res-send-to-a-new-url-in-node-js-express#:~:text=You%20want%20to%20redirect%20the%20request%20by%20setting,permanent%20redirect.%20res.statusCode%20%3D%20302%3B%20res.setHeader%28%22Location%22%2C%20%22http%3A%2F%2Fwww.url.com%2Fpage%22%29%3B%20res.end%28%29%3B 
+    res.end();
+});
 
 
 //Edit account details

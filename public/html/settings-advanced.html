@@ -29,6 +29,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
+    <script  src="../scripts/advanced-settings.js" type="module"></script>
 
 </head>
 <body class="main-body">
@@ -59,7 +60,7 @@
         </header>
 
         <!-- Container that holds the settings, also acts as a form -->
-        <form action="" class="settings-container">
+        <form action="/api/editAdvancedSettings" method="POST" class="settings-container">
 
             <input type="hidden" id="google-id" name="google_id" value=""> <!-- Send google ID of user to server on form submit -->
 
@@ -77,7 +78,7 @@
             <!-- Show feed provider dropdown. Options: auto always never -->
             <div class="basic-control-wrapper">
                 <label class="control-label" for="adv-prov">Show feed provider</label>
-                <select class="dropdown" type="text" id="adv-prov" name="advanced_show_provider">
+                <select style="display:none;" class="dropdown" type="text" id="adv-prov" name="advanced_show_provider">
                     <option value="auto">Let Fresher decide</option>
                     <option value="always">Always</option>
                     <option value="never">Never</option>
@@ -87,7 +88,7 @@
             <!-- Show age of article dropdown. Options: auto always never -->
             <div class="basic-control-wrapper">
                 <label class="control-label" for="adv-age">Show age of article</label>
-                <select class="dropdown" type="text" id="adv-age" name="advanced_show_age">
+                <select style="display:none;" class="dropdown" type="text" id="adv-age" name="advanced_show_age" >
                     <option value="auto">Let Fresher decide</option>
                     <option value="always">Always</option>
                     <option value="never">Never</option>
@@ -100,7 +101,7 @@
                 <input class="submit-button" type="submit" value="Save">
 
                 <!-- Cancel button -->
-                <a class="button-tonal" href="javascript:window.history.back();"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
+                <a class="button-tonal" href="/html/settings-home.html"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
                     <img src="../icons/buttons/cancel.svg" alt="Cancel icon" class="button-icon">
                     <p class="button-tonal-text">Cancel</p>
                 </a>
