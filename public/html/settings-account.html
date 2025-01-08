@@ -30,8 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
     
-    <script src="../scripts/account-settings.js"></script>
-    <script>fetchAccountSettings()</script>
+    <script src="../scripts/account-settings.js" type="module"></script>
     
 </head>
 <body class="main-body">
@@ -63,6 +62,8 @@
 
         <!-- Container that holds the settings, also acts as a form -->
         <form action="/api/editAccountSettings" method="POST" class="settings-container">
+
+            <input type="hidden" id="google-id" name="google_id" value=""> <!-- Send google ID of user to server on form submit -->
 
             <!-- Header section -->
             <div class="header-with-breadcrumb">

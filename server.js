@@ -1,4 +1,3 @@
-
 const sdk = require('node-appwrite');
 const express = require("express");
 const sqlite3 = require('sqlite3').verbose();
@@ -27,13 +26,16 @@ const db = new sqlite3.Database('./.database/datasource.db', sqlite3.OPEN_READWR
 
 
 // Get account settings
-const getForSpecificUser = 'SELECT * FROM account WHERE account_name = ?'; //SQL query
+const getForSpecificUser = 'SELECT * FROM account WHERE google_id = ?'; //SQL query
 app.get('/api/accountSettings', (req, res) => {                            // the callback function runs
-  db.all(                                                                  //Retrieve the data from the database
+    const googleId = req.query.google_id; // Get google_id from query parameters
+
+    db.all(                                                                  //Retrieve the data from the database
     getForSpecificUser,                                                    //run the SQL query 
-    ["Yav"],                                                               // with the following parameters
+    [googleId],                                                               // with the following parameters
     (err, rows) => {                                                       // callback function for the database retrival function
         if (err) return console.error(err.message);
+        console.log(rows);
         res.json(rows);                                                    // The data is posted to the endpoint
     }
 );
@@ -50,15 +52,12 @@ INSERT INTO account (google_id, account_id, advanced_show_provider, advanced_sho
 SELECT ?, (SELECT IFNULL(MAX(account_id), 0) + 1 FROM account), 'auto', 'auto', ?
 WHERE NOT EXISTS (SELECT 1 FROM account WHERE google_id = ?)
 `;
-
 // Same as above but inserts sample data for feed.
 const addDemoFeed = `
 INSERT INTO feed (feed_id, google_id, feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description)
 SELECT (SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'CNET',  'https://www.cnet.com/rss/news/', 4, 'auto', 'auto', 'auto'
 WHERE NOT EXISTS (SELECT 1 FROM feed WHERE google_id = ?)
 `;
-
-
 app.use(express.json()); //Middleware that parses incoming rquires with JSON things inside.
 app.post('/api/logUserIn', (req, res) => {
     const { title } = req.body;
@@ -86,11 +85,26 @@ app.post('/api/logUserIn', (req, res) => {
 
 
 //Edit account details
-const editUserAccountDetails = 'SELECT * FROM account WHERE account_name = ?'; //SQL query
+const editUserAccountDetails = `
+UPDATE account
+SET account_name = ?
+WHERE google_id = ?
+`; //SQL query
+
 app.post('/api/editAccountSettings', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
-    const { account_name, account_image } = req.body;
+    const { account_name, account_image, google_id } = req.body;
     console.log("----\nEdit account settings request")
     console.log(req.body);
+
+    db.run(
+        editUserAccountDetails,
+        [account_name, google_id],
+        function(err) {
+            if (err) return console.error(err.message);
+            console.log(`Rows inserted ${this.changes}`);
+    });
+
+    console.log("-----")
     res.statusCode = 302;                                                       // Redirects back.
     res.setHeader("Location", "/html/settings-account.html");                   // Nagle, D. (2016) How to res.send to a new URL in Node.js/Express?, Accessed Jan 6 2025 https://stackoverflow.com/questions/40497534/how-to-res-send-to-a-new-url-in-node-js-express#:~:text=You%20want%20to%20redirect%20the%20request%20by%20setting,permanent%20redirect.%20res.statusCode%20%3D%20302%3B%20res.setHeader%28%22Location%22%2C%20%22http%3A%2F%2Fwww.url.com%2Fpage%22%29%3B%20res.end%28%29%3B 
     res.end();
