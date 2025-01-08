@@ -28,7 +28,6 @@ function testFetch() {
     fetch('/api/data1')
     .then(response => response.json())
     .then(data => {
-        console.log(data); // Output: { message: 'Hello from the server!' }
         document.getElementsByClassName("comp-header-text")[0].innerHTML = data[0].google_token;
     })
     .catch(error => {

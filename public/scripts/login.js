@@ -10,16 +10,14 @@ const loginScreen = document.getElementById("login-screen");
 loginBtn.addEventListener("click", handleLogin, false);
 logoutBtn.addEventListener("click", handleLogout, false);
 
+
 async function handleLogin() {
-    console.log("helo");
     account.createOAuth2Session(
         Appwrite.OAuthProvider.Google,
         'http://localhost:8000/',
         'http://localhost:8000/fail'
     );
 }
-
-
 
 async function getUser() {
     try {
@@ -35,7 +33,20 @@ function renderLoginScreen() {
 }
 
 async function renderProfileScreen(user) {
-    document.getElementById("temp-login-status").innerHTML = user.name;
+    //POST the data to the server
+    fetch('/api/getUsername', {
+        method: "POST",
+        body: JSON.stringify({ 'account_id': user.$id }), // Send the Google ID
+        headers: { //Set the endpoint to support this
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        //console.log(json);
+        document.getElementById("temp-login-status").innerHTML = json[0].account_name;
+    });
+    
     profileScreen.style.display = ''; //‘Blackus’ (2015) Remove Style on Element, Accessed 6 Jan 2025 https://stackoverflow.com/questions/18691655/remove-style-on-element 
     loginScreen.style.display = 'none';
 
