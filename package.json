@@ -15,6 +15,7 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
     "node-appwrite": "^14.1.0",
+    "rss-parser": "^3.13.0",
     "sqlite3": "^5.1.7"
   }
 }

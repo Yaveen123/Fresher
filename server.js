@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
+let Parser = require('rss-parser');
+let parser = new Parser();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -28,6 +30,22 @@ const db = new sqlite3.Database('./.database/datasource.db', sqlite3.OPEN_READWR
 // Get account settings
 const getForSpecificUser = 'SELECT * FROM account WHERE google_id = ?'; //SQL query
 app.get('/api/accountSettings', (req, res) => {                            // the callback function runs
+    console.log(req);
+    const googleId = req.query.google_id; // Get google_id from query parameters
+
+    console.log(googleId);
+    db.all(                                                                  //Retrieve the data from the database
+    getForSpecificUser,                                                    //run the SQL query 
+    [googleId],                                                               // with the following parameters
+    (err, rows) => {                                                       // callback function for the database retrival function
+        if (err) return console.error(err.message);
+        console.log(rows);
+        res.json(rows);                                                    // The data is posted to the endpoint
+    }
+);
+});
+// Get advanced settings
+app.get('/api/advancedSettings', (req, res) => {                            // the callback function runs
     const googleId = req.query.google_id; // Get google_id from query parameters
 
     db.all(                                                                  //Retrieve the data from the database
@@ -39,12 +57,14 @@ app.get('/api/accountSettings', (req, res) => {                            // th
     }
 );
 });
-// Get advanced settings
-app.get('/api/advancedSettings', (req, res) => {                            // the callback function runs
+
+// Get RSS feeds
+const getRSSForSpecificUser = 'SELECT * FROM feed WHERE google_id = ?'; //SQL query
+app.get('/api/rssFeeds', (req, res) => {                            // the callback function runs
     const googleId = req.query.google_id; // Get google_id from query parameters
 
     db.all(                                                                  //Retrieve the data from the database
-    getForSpecificUser,                                                    //run the SQL query 
+    getRSSForSpecificUser,                                                    //run the SQL query 
     [googleId],                                                               // with the following parameters
     (err, rows) => {                                                       // callback function for the database retrival function
         if (err) return console.error(err.message);
@@ -151,3 +171,16 @@ app.post('/api/getUsername', (req, res) => {                           //"Alexan
         }
     );
 });
+
+
+ 
+//Async/await promise script from rss-parser https://www.npmjs.com/package/rss-parser 
+
+(async () => {
+    let feed = await parser.parseURL('https://www.reddit.com/.rss');
+    console.log(feed.title);
+
+    feed.items.forEach(item => {
+        console.log(item)
+    });
+})();
