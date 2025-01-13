@@ -173,14 +173,32 @@ app.post('/api/getUsername', (req, res) => {                           //"Alexan
 });
 
 
- 
 //Async/await promise script from rss-parser https://www.npmjs.com/package/rss-parser 
 
-(async () => {
-    let feed = await parser.parseURL('https://www.reddit.com/.rss');
-    console.log(feed.title);
 
-    feed.items.forEach(item => {
-        console.log(item)
-    });
-})();
+// Checks the feed if it's working or not.
+app.get(`/api/rssFeedChecker`, (req, res) => {                            // the callback function runs
+    const feedToCheck = req.query.feedToCheck; // Get google_id from query parameters
+    (async () => {
+        try {
+            var check = true;
+            const forceAwait = await fetch(feedToCheck, { signal: AbortSignal.timeout(2000) })
+                .then(function(response) {
+                    if (!response.ok) {
+                        // The promise auto rejects didn't get a 2xx response
+                        throw new Error("Not 2xx response", {cause: response});
+                    }
+                }).catch(function(err) {
+                    console.log("Failed to check feed", err);
+                    check = false;
+                });
+            // "jfriend00" (2016) Fetch resolves even if 404? Accessed Jan 13 2025 https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404 
+            // "Matthew-e-brown" (2020) how to make js wait for the result and treatment of fetch request to continous on? Accessed Jan 13 2025, https://stackoverflow.com/questions/60200798/how-to-make-js-wait-for-the-result-and-treatment-of-fetch-request-to-continuous
+            // 'Endless' (2018) Fetch API request timeout? Accessed Jan 13 2025 https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
+            res.send(check);
+        } catch (error) {
+            console.log("Failed to finish feed check", error);
+            res.send(false); 
+        }       
+    })();
+});

@@ -3,9 +3,14 @@ import { account } from './appwrite.js'
 function checkFeedFunctionality(feedsToCheck) {
     const feedsDict = [];
     const feedsLen = feedsToCheck.length;
-    
+    var inputIntoFeedsDict = []
     for (let item of feedsToCheck) {
-        console.log(item);
+        inputIntoFeedsDict = [];
+        fetch(`/api/rssFeedChecker?feedToCheck=${item.feed_url}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
     }
 }
 
