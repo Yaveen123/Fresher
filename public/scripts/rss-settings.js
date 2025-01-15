@@ -35,7 +35,9 @@ function createFeedOptions (feedsToCreate) {
         console.log("functional? ", item.functionality);
         try {
             if (item.functionality === "true") {
-                console.log("functional");
+                const newItem = document.createElement("div");
+                newItem.innerHTML = divHTML;
+                document.body.appendChild(newItem);
             } else {
                 console.log("broken");
             }
@@ -45,19 +47,22 @@ function createFeedOptions (feedsToCreate) {
     }
 }
 
+async function checkFeed(item) {
+    return fetch(`/api/rssFeedChecker?feedToCheck=${item.feed_url}`) //Send to server for checking
+    .then(response => response.json())
+    .then(data => {  return data              
+    })
+}
 
 // Checks if the feed is functioanl or not
-function checkFeedFunctionality(feedsToCheck) {
+async function checkFeedFunctionality(feedsToCheck) {
     const feedsDict = {};
     var isFeedFunctional;
     for (let item of feedsToCheck) {
         feedsDict[item.feed_id] = item; //All feed rows can expect to have a feed_id in the db, so it indexes by it. 
-        fetch(`/api/rssFeedChecker?feedToCheck=${item.feed_url}`) //Send to server for checking
-            .then(response => response.json())
-            .then(data => {                
-                isFeedFunctional = data.result.toString();
-                feedsDict[item.feed_id].functionality = isFeedFunctional; //"Functionality" is true/false based on if the RSS feed is broken or not.
-            })
+        const data = await checkFeed(item);
+        isFeedFunctional = data.result.toString();
+        feedsDict[item.feed_id].functionality = isFeedFunctional; //"Functionality" is true/false based on if the RSS feed is broken or not.
         // "Flambino" (2011) How to create dictionary and add key-value pairs dynamically, Accessed Jan 15 2025, https://stackoverflow.com/questions/7196212/how-to-create-a-dictionary-and-add-key-value-pairs-dynamically-in-javascript
     }
     return feedsDict;
@@ -70,8 +75,8 @@ async function getRSSFeedsFromServer () {
 
         fetch(`/api/rssFeeds?google_id=${googleID}`) 
             .then(response => response.json())
-            .then(data => {
-                createFeedOptions(checkFeedFunctionality(data))
+            .then(async data => {
+                createFeedOptions(await checkFeedFunctionality(data))
             })
 
     } catch (error) {
@@ -80,4 +85,4 @@ async function getRSSFeedsFromServer () {
 };
 
 
-getRSSFeedsFromServer ();
+document.body.onload = getRSSFeedsFromServer;
