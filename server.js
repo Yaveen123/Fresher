@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 let Parser = require('rss-parser');
-let parser = new Parser();
+let parser = new Parser({ timeout: 1000 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -182,23 +182,48 @@ app.get(`/api/rssFeedChecker`, (req, res) => {                            // the
     (async () => {
         try {
             var check = true;
-            const forceAwait = await fetch(feedToCheck, { signal: AbortSignal.timeout(2000) })
+
+            // Check if the link works (doesn't return any errors)
+            const forceAwait = await fetch(feedToCheck, { signal: AbortSignal.timeout(2000) }) // Try to fetch it. The fetch function returns a promise that resolves to Response
                 .then(function(response) {
                     if (!response.ok) {
-                        // The promise auto rejects didn't get a 2xx response
+                        // The promise auto rejects didn't resolve a 2xx response
                         throw new Error("Not 2xx response", {cause: response});
                     }
                 }).catch(function(err) {
                     console.log("Failed to check feed", err);
-                    check = false;
+                    check = false; // Change 'check' to false and return it if the promise is broken.
                 });
             // "jfriend00" (2016) Fetch resolves even if 404? Accessed Jan 13 2025 https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404 
             // "Matthew-e-brown" (2020) how to make js wait for the result and treatment of fetch request to continous on? Accessed Jan 13 2025, https://stackoverflow.com/questions/60200798/how-to-make-js-wait-for-the-result-and-treatment-of-fetch-request-to-continuous
             // 'Endless' (2018) Fetch API request timeout? Accessed Jan 13 2025 https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
-            res.send(check);
+
+            // Check if the link is an actual RSS feed. 
+            (async () => {
+                try {
+                    let feed = await parser.parseURL(feedToCheck); //Tries to fetch RSS feed using the rss-parser module
+                    
+                    console.log(feed.title);
+                    feed.items.forEach(item => {
+                        console.log('...')
+                    });
+
+                } catch (error) { 
+                    console.log("Failed to parse RSS feed", error);
+                    check = false;
+                }
+                res.json({ 
+                    feed: feedToCheck,
+                    result: check 
+                });
+            })();
+            // rss-parser docs - https://www.npmjs.com/package/rss-parser   
         } catch (error) {
             console.log("Failed to finish feed check", error);
-            res.send(false); 
+            res.json({ 
+                feed: feedToCheck,
+                result: false 
+            }); 
         }       
     })();
 });
