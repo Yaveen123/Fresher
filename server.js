@@ -199,22 +199,25 @@ app.get(`/api/rssFeedChecker`, (req, res) => {                            // the
             // 'Endless' (2018) Fetch API request timeout? Accessed Jan 13 2025 https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
 
             // Check if the link is an actual RSS feed. 
+            var feedToReturn;
             (async () => {
                 try {
                     let feed = await parser.parseURL(feedToCheck); //Tries to fetch RSS feed using the rss-parser module
-                    
                     console.log(feed.title);
+                    feedToReturn = feed;
                     feed.items.forEach(item => {
-                        console.log('...')
+                        
                     });
 
                 } catch (error) { 
                     console.log("Failed to parse RSS feed", error);
                     check = false;
                 }
+                console.log(feedToReturn);
                 res.json({ 
                     feed: feedToCheck,
-                    result: check 
+                    result: check,
+                    feedData: feedToReturn
                 });
             })();
             // rss-parser docs - https://www.npmjs.com/package/rss-parser   

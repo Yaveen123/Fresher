@@ -60,7 +60,7 @@
         </header>
 
         <!-- Container that holds the settings -->
-        <section action="" class="settings-container">
+        <section action="" class="settings-container" id="rss-settings-container">
 
             <!-- Header section -->
             <div class="header-with-breadcrumb">
@@ -73,11 +73,10 @@
                 </div>
             </div>
 
-            <!-- Some information -->
-            <p class="info">Drag feeds to reorder them</p>
+            <img src="../images/loader.gif" style="align-self: center; width: 50px;" id="loader" alt="Gif signaling waiting for content to load">
 
             <!-- Add new feed and refresh buttons -->
-            <div class="horizontal-button-container">
+            <div class="horizontal-button-container" style="display:none" id="showOnLoad">
                 <!-- Add new feed button -->
                 <a class="button-filled" href="../html/settings-rss-feed.html"> 
                     <img src="../icons/buttons/add_feed.svg" class="button-icon">
@@ -90,88 +89,6 @@
                     <p class="button-tonal-text">Refresh</p>
                 </a>
             </div>
-
-            <!-- Demo of a Functional feed -->
-            <div class="feed-outline functional">
-                <div class="feed-outline-info ">
-                    <!-- Feed image -->
-                    <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
-                    <div class="feed-outline-info-content">
-                        <div class="feed-outline-info-content-titlecontainer">
-                            <!-- Feed title -->
-                            <p class="feed-outline-info-content-titlecontainer-text">Feed title</p>
-                        </div>
-                        <!-- Feed description -->
-                        <p class="feed-outline-info-content-description">Functional</p>
-                    </div>
-                </div>
-                <!-- Buttons -->
-                <div class="feed-outline-actions">
-                    <!-- Edit button -->
-                    <a href="../html/settings-rss-feed.html">
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
-                    </a>
-                    <!-- Delete button -->
-                    <a href="https://google.com">
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
-                    </a>
-                </div>
-            </div>
-
-            <!-- Demo of a non functional feed -->
-            <div class="feed-outline broken">
-                <div class="feed-outline-info ">
-                    <!-- Feed image -->
-                    <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
-                    <div class="feed-outline-info-content">
-                        <div class="feed-outline-info-content-titlecontainer">
-                            <!-- Feed title -->
-                            <p class="feed-outline-info-content-titlecontainer-text">Feed title</p>
-                        </div>
-                        <!-- Feed description -->
-                        <p class="feed-outline-info-content-description">Cannot reach feed</p>
-                    </div>
-                </div>
-                <!-- Buttons -->
-                <div class="feed-outline-actions">
-                    <!-- Edit button -->
-                    <a href="../html/settings-rss-feed.html">
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
-                    </a>
-                    <!-- Delete button -->
-                    <a href="https://google.com">
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
-                    </a>
-                </div>
-            </div>
-
-            <!-- Demo of a feed that requires a refresh  -->
-            <div class="feed-outline requiresrefresh">
-                <div class="feed-outline-info ">
-                    <!-- Feed image -->
-                    <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
-                    <div class="feed-outline-info-content">
-                        <div class="feed-outline-info-content-titlecontainer">
-                            <!-- Feed title -->
-                            <p class="feed-outline-info-content-titlecontainer-text">Feed title</p>
-                        </div>
-                        <!-- Feed description -->
-                        <p class="feed-outline-info-content-description">Click the 'Refresh' button</p>
-                    </div>
-                </div>
-                <!-- Buttons -->
-                <div class="feed-outline-actions">
-                    <!-- Edit button -->
-                    <a href="../html/settings-rss-feed.html">
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
-                    </a>
-                    <!-- Delete button -->
-                    <a href="https://google.com">
-                        <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
-                    </a>
-                </div>
-            </div>
-            
         </section>
     </div>
 </body>

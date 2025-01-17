@@ -1,6 +1,5 @@
 import { account } from './appwrite.js'
 const divHTML = `
-<div class="feed-outline functional">
     <div class="feed-outline-info ">
         <!-- Feed image -->
         <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
@@ -24,8 +23,10 @@ const divHTML = `
             <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
         </a>
     </div>
-</div>
 `
+
+
+
 
 function createFeedOptions (feedsToCreate) {
     console.log(feedsToCreate);
@@ -36,21 +37,61 @@ function createFeedOptions (feedsToCreate) {
         try {
             if (item.functionality === "true") {
                 const newItem = document.createElement("div");
+                newItem.className = "feed-outline functional";
+                newItem.id = item.feed_id;
                 newItem.innerHTML = divHTML;
-                document.body.appendChild(newItem);
+                newItem.querySelector('.feed-outline-info-content-titlecontainer-text').innerHTML = item.feed_name; // 'CSCH' (2016) Finding child element of parent with JavaScript https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-with-javascript 
+                newItem.querySelector('.feed-outline-info-content-description').innerHTML = 'Functional';
+                //Fetching images is problematic and requires a try statement. 
+                try {
+                    newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
+                } catch (error) {
+                    console.log("Couldn't get image", error);
+                }
+                document.getElementById("rss-settings-container").appendChild(newItem);
+                
             } else {
-                console.log("broken");
+                const newItem = document.createElement("div");
+                newItem.className = "feed-outline broken";
+                newItem.id = item.feed_id;
+                newItem.innerHTML = divHTML;
+                newItem.querySelector('.feed-outline-info-content-titlecontainer-text').innerHTML = item.feed_name; // 'CSCH' (2016) Finding child element of parent with JavaScript https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-with-javascript 
+                newItem.querySelector('.feed-outline-info-content-description').innerHTML = "Broken.";
+                //Fetching images is problematic and requires a try statement. 
+                try {
+                    newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
+                } catch (error) {
+                    console.log("Couldn't get image", error);
+                }
+                document.getElementById("rss-settings-container").appendChild(newItem);
             }
         } catch (error) {
             console.log(error)
+            const newItem = document.createElement("div");
+            newItem.className = "feed-outline requiresrefresh";
+            newItem.id = item.feed_id;
+            newItem.innerHTML = divHTML;
+            newItem.querySelector('.feed-outline-info-content-titlecontainer-text').innerHTML = item.feed_name; // 'CSCH' (2016) Finding child element of parent with JavaScript https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-with-javascript 
+            newItem.querySelector('.feed-outline-info-content-description').innerHTML = error;
+            //Fetching images is problematic and requires a try statement. 
+            try {
+                newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
+            } catch (error) {
+                console.log("Couldn't get image", error);
+            }
+            document.getElementById("rss-settings-container").appendChild(newItem);
         }
     }
+    document.getElementById("showOnLoad").style.display = "flex";
+    document.getElementById("loader").style.display = "none";
 }
 
 async function checkFeed(item) {
     return fetch(`/api/rssFeedChecker?feedToCheck=${item.feed_url}`) //Send to server for checking
     .then(response => response.json())
-    .then(data => {  return data              
+    .then(data => {  
+        console.log(data); 
+        return data              
     })
 }
 
@@ -63,6 +104,7 @@ async function checkFeedFunctionality(feedsToCheck) {
         const data = await checkFeed(item);
         isFeedFunctional = data.result.toString();
         feedsDict[item.feed_id].functionality = isFeedFunctional; //"Functionality" is true/false based on if the RSS feed is broken or not.
+        feedsDict[item.feed_id].extraData = data;
         // "Flambino" (2011) How to create dictionary and add key-value pairs dynamically, Accessed Jan 15 2025, https://stackoverflow.com/questions/7196212/how-to-create-a-dictionary-and-add-key-value-pairs-dynamically-in-javascript
     }
     return feedsDict;

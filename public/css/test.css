@@ -4,6 +4,16 @@
 .test-2 {
     background-color: aquamarine;
 }
+.test-3 {
+    position:absolute;
+    width: 247.033px;
+    height: 247.033px;
+    border-radius: 51px;
+    border: 1px solid #AAF3FF;
+    background: linear-gradient(142deg, rgba(255, 255, 255, 0.10) 10.78%, rgba(0, 195, 255, 0.24) 102.31%);
+    box-shadow: -5px -5px 15.1px 0px #AAF3FF inset, -12px 0px 20.8px 0px rgba(177, 177, 177, 0.50) inset, 12px 0px 34.1px 0px #E1F8FF inset;
+    backdrop-filter: blur(5.400000095367432px);
+}
 .test-feed-container {
     display: flex;
     padding: 0px 18px;
