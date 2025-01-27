@@ -29,9 +29,6 @@ async function fetchFeedSettings() {
         } catch (error) {
             console.log(error);
         }
-        
-        console.log("-------------")
-        console.log(feedID);
 
         fetch(`/api/feedSettings?feed=${feedID}&googleid=${googleId}`)
             .then(response => response.json())
