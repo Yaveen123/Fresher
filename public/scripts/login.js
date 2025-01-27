@@ -15,7 +15,7 @@ async function handleLogin() {
     account.createOAuth2Session(
         Appwrite.OAuthProvider.Google,
         'http://localhost:8000/',
-        'http://localhost:8000/fail'
+        'http://localhost:8000/fail',
     );
 }
 

@@ -13,6 +13,11 @@ async function fetchAccountSettings() {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+        
+        for (let item of document.getElementsByClassName('loadable-content')) {
+            item.style.visibility = "visible";
+        }
+        document.getElementById("loader").style.display = "none";
     } catch (error) {
         console.error('Error fetching user:', error);
     }

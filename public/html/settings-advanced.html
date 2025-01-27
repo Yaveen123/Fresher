@@ -31,6 +31,11 @@
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
     <script  src="../scripts/advanced-settings.js" type="module"></script>
 
+    <style>
+        .loadable-content {
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body class="main-body">
     <!-- Navbar -->
@@ -75,8 +80,10 @@
                 </div>
             </div>
 
+            <img src="../images/loader.gif" style="align-self: center; width: 50px;" id="loader" alt="Gif signaling waiting for content to load">
+
             <!-- Show feed provider dropdown. Options: auto always never -->
-            <div class="basic-control-wrapper">
+            <div class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="adv-prov">Show feed provider</label>
                 <select style="display:none;" class="dropdown" type="text" id="adv-prov" name="advanced_show_provider">
                     <option value="auto">Let Fresher decide</option>
@@ -86,7 +93,7 @@
             </div>
 
             <!-- Show age of article dropdown. Options: auto always never -->
-            <div class="basic-control-wrapper">
+            <div class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="adv-age">Show age of article</label>
                 <select style="display:none;" class="dropdown" type="text" id="adv-age" name="advanced_show_age" >
                     <option value="auto">Let Fresher decide</option>
@@ -96,7 +103,7 @@
             </div>
 
             <!-- Submit and cancel buttons -->
-            <div class="horizontal-button-container">
+            <div class="horizontal-button-container loadable-content">
                 <!-- Submit button -->
                 <input class="submit-button" type="submit" value="Save">
 

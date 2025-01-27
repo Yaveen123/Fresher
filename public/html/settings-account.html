@@ -31,6 +31,12 @@
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
     
     <script src="../scripts/account-settings.js" type="module"></script>
+
+    <style>
+        .loadable-content {
+            visibility: hidden;
+        }
+    </style>
     
 </head>
 <body class="main-body">
@@ -76,8 +82,10 @@
                 </div>
             </div>
 
+            <img src="../images/loader.gif" style="align-self: center; width: 50px;" id="loader" alt="Gif signaling waiting for content to load">
+
             <!-- Upload account image -->
-            <div class="basic-control-wrapper">
+            <div class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="acc-image" >Account picture</label>
                 <label for="image" class="image_upload" style="margin-top: 10px;">
                     <input type="file" accept="image/*" name="account_image" id="acc-image" style="display: none;">
@@ -88,13 +96,13 @@
             </div>
             
             <!-- Change account name -->
-            <div class="basic-control-wrapper">
+            <div class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="acc-name">Account name</label>
                 <input class="textbox" type="tel" id="acc-name" name="account_name" value="Loading...">
             </div>
 
             <!-- Reset account button (doesn't submit data) -->
-            <div class="basic-control-wrapper" style="display:flex; flex-direction: column; gap:10px">
+            <div class="basic-control-wrapper loadable-content" style="display:flex; flex-direction: column; gap:10px">
                 <label class="control-label">More options</label>
                 <a class="button-caution" href="https://google.com">
                     <img src="../icons/buttons/bin.svg" class="button-icon">
@@ -103,7 +111,7 @@
             </div>
 
             <!-- Submit and cancel buttons -->
-            <div class="horizontal-button-container">
+            <div class="horizontal-button-container loadable-content">
                 <!-- Submit -->
                 <input class="submit-button" type="submit" value="Save">
 

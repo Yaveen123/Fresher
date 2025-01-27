@@ -16,7 +16,8 @@ function deleteRSSFeedWithParam(feedID) {
     fetch(`/api/deleteFeed?feed_id=${feedID}`) // Sends a request to the server to delete the RSS feed
         .then(response => response.json())
         .then(async data => { 
-            window.location.replace(data.redirectto); //Redirects to the specified redirect page
+            history.go(0);
+            //window.location.replace("../html/settings-rss.html"); //Redirects to the specified redirect page
         })
         .catch(error => {
             console.error('Error fetching data:', error);
