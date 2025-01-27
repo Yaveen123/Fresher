@@ -31,6 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
     <script  src="../scripts/rss-settings.js" type="module" defer></script>
+    <script  src="../scripts/delete-feed.js"></script>
 </head>
 <body class="main-body">
     <!-- Navbar -->
@@ -78,16 +79,16 @@
             <!-- Add new feed and refresh buttons -->
             <div class="horizontal-button-container" style="display:none" id="showOnLoad">
                 <!-- Add new feed button -->
-                <a class="button-filled" href="../html/settings-rss-feed.html"> 
+                <a class="button-filled" href="../html/settings-rss-feed.html?feed=new"> 
                     <img src="../icons/buttons/add_feed.svg" class="button-icon">
                     <p class="button-filled-text">Add new feed</p>
                 </a>
                 
                 <!-- Refresh button -->
-                <a class="button-tonal" href="https://google.com"> 
+                <button class="button-tonal" style="border: 0px;" onclick="history.go(0);"> <!-- Lobito (2015) Button that refreshes page on click, Accessed 17 Jan 2025 https://stackoverflow.com/questions/29884654/button-that-refreshes-the-page-on-click -->
                     <img src="../icons/buttons/refresh.svg" class="button-icon">
                     <p class="button-tonal-text">Refresh</p>
-                </a>
+                </button>
             </div>
         </section>
     </div>

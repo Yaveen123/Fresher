@@ -2,7 +2,7 @@ import { account } from './appwrite.js'
 const divHTML = `
     <div class="feed-outline-info ">
         <!-- Feed image -->
-        <img class="feed-outline-info-image" src="../images/placeholder.png" alt="Icon of this feed">
+        <img class="feed-outline-info-image" src="../images/rss.jpeg" alt="Icon of this feed">
         <div class="feed-outline-info-content">
             <div class="feed-outline-info-content-titlecontainer">
                 <!-- Feed title -->
@@ -15,11 +15,11 @@ const divHTML = `
     <!-- Buttons -->
     <div class="feed-outline-actions">
         <!-- Edit button -->
-        <a href="../html/settings-rss-feed.html">
+        <a id="edit-button" href="../html/settings-rss-feed.html">
             <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
         </a>
         <!-- Delete button -->
-        <a href="https://google.com">
+        <a id="delete-button">
             <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
         </a>
     </div>
@@ -42,7 +42,11 @@ function createFeedOptions (feedsToCreate) {
                 newItem.innerHTML = divHTML;
                 newItem.querySelector('.feed-outline-info-content-titlecontainer-text').innerHTML = item.feed_name; // 'CSCH' (2016) Finding child element of parent with JavaScript https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-with-javascript 
                 newItem.querySelector('.feed-outline-info-content-description').innerHTML = 'Functional';
-                //Fetching images is problematic and requires a try statement. 
+                newItem.querySelector('#edit-button').href = `../html/settings-rss-feed.html?feed=${item.feed_id}`;
+                newItem.querySelector('#delete-button').onclick = function() {
+                    deleteRSSFeedWithParam(item.feed_id);
+                };
+                                //Fetching images is problematic and requires a try statement. 
                 try {
                     newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
                 } catch (error) {
@@ -56,7 +60,11 @@ function createFeedOptions (feedsToCreate) {
                 newItem.id = item.feed_id;
                 newItem.innerHTML = divHTML;
                 newItem.querySelector('.feed-outline-info-content-titlecontainer-text').innerHTML = item.feed_name; // 'CSCH' (2016) Finding child element of parent with JavaScript https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-with-javascript 
-                newItem.querySelector('.feed-outline-info-content-description').innerHTML = "Broken.";
+                newItem.querySelector('.feed-outline-info-content-description').innerHTML = "Couldn't get RSS feed";
+                newItem.querySelector('#edit-button').href = `../html/settings-rss-feed.html?feed=${item.feed_id}`;
+                newItem.querySelector('#delete-button').onclick = function() {
+                    deleteRSSFeedWithParam(item.feed_id);
+                };
                 //Fetching images is problematic and requires a try statement. 
                 try {
                     newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
@@ -72,8 +80,11 @@ function createFeedOptions (feedsToCreate) {
             newItem.id = item.feed_id;
             newItem.innerHTML = divHTML;
             newItem.querySelector('.feed-outline-info-content-titlecontainer-text').innerHTML = item.feed_name; // 'CSCH' (2016) Finding child element of parent with JavaScript https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-with-javascript 
-            newItem.querySelector('.feed-outline-info-content-description').innerHTML = error;
-            //Fetching images is problematic and requires a try statement. 
+            newItem.querySelector('.feed-outline-info-content-description').innerHTML = "An internal error occurred";
+            newItem.querySelector('#edit-button').href = `../html/settings-rss-feed.html?feed=${item.feed_id}`;
+            newItem.querySelector('#delete-button').onclick = function() {
+                deleteRSSFeedWithParam(item.feed_id);
+            };            //Fetching images is problematic and requires a try statement. 
             try {
                 newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
             } catch (error) {

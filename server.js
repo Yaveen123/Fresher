@@ -20,10 +20,8 @@ app.listen(8000, () => console.log("Server is running on Port 8000, visit http:/
 // Connect to database 
 const db = new sqlite3.Database('./.database/datasource.db', sqlite3.OPEN_READWRITE,(err) => {
   if (err) return console.error(err.message); // If connection unsuccessful, then return error message
-
     console.log('Successful connection');
 })
-
 
 
 
@@ -75,6 +73,7 @@ app.get('/api/rssFeeds', (req, res) => {                            // the callb
 
 
 
+
 // When user logs in, this runs. Creates a new account whenever a new user logs in. 
 // Insert a record into the google_id column of the account table, then give the value, set account_id to an increment of the previous, and insert only if there isn't a record found.
 // 'systempunttoout' (2010) SQL: How to properly check if a record exists Accessed 7 Jan 2025 https://stackoverflow.com/questions/4253960/sql-how-to-properly-check-if-a-record-exists 
@@ -113,6 +112,50 @@ app.post('/api/logUserIn', (req, res) => {
 });
 
 
+// Get RSS feed settings
+const addNewFeed = `
+INSERT INTO feed (feed_id, google_id, feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description)
+VALUES ((SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'Unnamed feed', 'Add URL here', 4, 'auto', 'auto', 'auto')
+`;
+
+const getSettingsForFeed = 'SELECT * FROM feed WHERE feed_id = ?';
+app.get('/api/feedSettings', (req, res) => {                            // the callback function runs
+    const feedID = req.query.feed; // Get feed id from query parameters
+    const google_id = req.query.googleid;
+    let lastcreatedid;
+
+    if (feedID === "new") { // If this is the create new function
+        db.run( // Add a new feed
+            addNewFeed,
+            [google_id],
+            function(err) {
+                if (err) return console.error(err.message);
+                console.log(`SQL addNewFeed, Rows inserted ${this.changes}`);
+                lastcreatedid = this.lastID; // Get last ID. From sqlite3 docs. https://github.com/TryGhost/node-sqlite3/wiki/API#databaserun:~:text=If%20execution%20was%20successful%2C%20the%20this,.get()%20don%27t%20retrieve%20these%20values. 
+                
+                db.all(                                                                    // We can then retrieve the data from the database to open as usual...
+                    getSettingsForFeed,                                                    //run the SQL query 
+                    [lastcreatedid],                                                       // with the following parameters
+                    (err, rows) => {                                                       // callback function for the database retrival function
+                        if (err) return console.error(err.message);
+                        console.log(rows);
+                        res.json(rows);                                                    // The data is posted to the endpoint
+                    }
+                );
+            }
+        );
+    } else {
+        db.all(                                                                  //Retrieve the data from the database
+            getSettingsForFeed,                                                    //run the SQL query 
+            [feedID],                                                               // with the following parameters
+            (err, rows) => {                                                       // callback function for the database retrival function
+                if (err) return console.error(err.message);
+                console.log(rows);
+                res.json(rows);                                                    // The data is posted to the endpoint
+            }
+        );
+    }
+});
 
 
 //Edit account details
@@ -157,26 +200,67 @@ app.post('/api/editAdvancedSettings', (req, res) => {                           
     res.end();
 });
 
+//Edit account details
+const editRSSFeedSettings = `
+UPDATE feed
+SET feed_name = ?, feed_url = ?, feed_article_num = ?, feed_view_type = ?, feed_show_image = ?, feed_show_description = ?
+WHERE feed_id = ?
+`; //SQL query
+app.post('/api/editRSSFeedSettings', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
+
+    const { feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description, feed_id } = req.body;
+    
+        db.run(
+            editRSSFeedSettings,
+            [feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description, feed_id],
+            function(err) {
+                if (err) return console.error(err.message);
+                console.log(`SQL editAdvancedSettings, Rows updated ${this.changes}`);
+        });
+    
+    
+    res.statusCode = 302;                                                       // Redirects back.
+    res.setHeader("Location", `/html/settings-rss-feed.html?feed=${feed_id}`);                   // Nagle, D. (2016) How to res.send to a new URL in Node.js/Express?, Accessed Jan 6 2025 https://stackoverflow.com/questions/40497534/how-to-res-send-to-a-new-url-in-node-js-express#:~:text=You%20want%20to%20redirect%20the%20request%20by%20setting,permanent%20redirect.%20res.statusCode%20%3D%20302%3B%20res.setHeader%28%22Location%22%2C%20%22http%3A%2F%2Fwww.url.com%2Fpage%22%29%3B%20res.end%28%29%3B 
+    res.end();
+});
 
 //Edit account details
+const deleteRSSFeed = `
+UPDATE feed
+SET feed_name = ?, google_id = ?, feed_url = ?, feed_article_num = ?, feed_view_type = ?, feed_show_image = ?, feed_show_description = ?
+WHERE feed_id = ?
+`; //SQL query
+app.get('/api/deleteFeed', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
+
+    const feed_id = req.query.feed_id;
+
+    db.run(
+        deleteRSSFeed,
+        ["-", "-", "-", "0", "-", "-", "-", feed_id],
+        function(err) {
+            if (err) return console.error(err.message);
+            console.log(`SQL deleteRSSFeed, Rows updated ${this.changes}`);
+    });
+    res.send({ redirectto: `/html/settings-rss-feed.html`});
+});
+
+
+//Get the username
 const getUsername = `SELECT account_name FROM account WHERE google_id = ?`; //SQL query
-app.post('/api/getUsername', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
+app.post('/api/getUsername', (req, res) => {                                //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
     const { account_name, account_image, google_id } = req.body;
     db.all(
         getUsername,
         [req.body.account_id],
-        (err, rows) => {                                                       // callback function for the database retrival function
+        (err, rows) => {                                                    // callback function for the database retrival function
             if (err) return console.error(err.message);
-            res.send(rows);                                                    // The data is posted to the endpoint
+            res.send(rows);                                                 // The data is posted to the endpoint
         }
     );
 });
 
-
-//Async/await promise script from rss-parser https://www.npmjs.com/package/rss-parser 
-
-
 // Checks the feed if it's working or not.
+//Async/await promise script from rss-parser https://www.npmjs.com/package/rss-parser 
 app.get(`/api/rssFeedChecker`, (req, res) => {                            // the callback function runs
     const feedToCheck = req.query.feedToCheck; // Get google_id from query parameters
     (async () => {
@@ -203,17 +287,15 @@ app.get(`/api/rssFeedChecker`, (req, res) => {                            // the
             (async () => {
                 try {
                     let feed = await parser.parseURL(feedToCheck); //Tries to fetch RSS feed using the rss-parser module
-                    console.log(feed.title);
                     feedToReturn = feed;
                     feed.items.forEach(item => {
                         
                     });
-
+                    
                 } catch (error) { 
                     console.log("Failed to parse RSS feed", error);
                     check = false;
                 }
-                console.log(feedToReturn);
                 res.json({ 
                     feed: feedToCheck,
                     result: check,

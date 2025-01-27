@@ -30,6 +30,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
+    <script  src="../scripts/rss-feed-settings.js" type="module"></script>
+    <script  src="../scripts/delete-feed.js"></script>
+
+    <style>
+        .loadable-content {
+            visibility: hidden;
+        }
+    </style>
 
 </head>
 <body class="main-body">
@@ -60,10 +68,10 @@
         </header>
 
         <!-- Container that holds the settings, which also acts as the form-->
-        <form class="settings-container" action="">
+        <form action="/api/editRSSFeedSettings" method="POST" class="settings-container">
             
             <input type="hidden" id="google-id" name="google_id" value=""> <!-- Send google ID of user to server on form submit -->
-
+            <input type="hidden" id="feed-id" name="feed_id" value="">
 
             <!-- Header section -->
             <div class="header-with-breadcrumb">
@@ -74,30 +82,32 @@
                 </div>
                 <div class="header-container">
                     <img src="../icons/batteredheader/address.svg" alt="A non-functional arrow pointing towards the page heading.">
-                    <p class="header-container-text">Feed title</p>
+                    <p class="header-container-text" id="feed-name-header">Loading...</p>
                 </div>
             </div>
 
+            <img src="../images/loader.gif" style="align-self: center; width: 50px;" id="loader" alt="Gif signaling waiting for content to load">
+
             <!-- Feed name textbox -->
-            <div class="basic-control-wrapper">
+            <div  class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="srf-name">Feed name</label>
                 <input class="textbox" type="text" id="srf-name" name="feed_name" value="Textbox">
             </div>
 
             <!-- Feed URL textbox -->
-            <div class="basic-control-wrapper">
+            <div  class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="srf-url">Feed URL</label>
                 <input class="textbox" type="text" id="srf-url" name="feed_url" value="Textbox">
             </div>
 
             <!-- Feed articles number input. Range: 0-15 -->
-            <div class="basic-control-wrapper">
+            <div  class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="srf-articlenum">Max. number of articles on home page</label>
                 <input class="textbox" type="number" id="srf-articlenum" name="feed_article_num" value="1" min="1" max="15">
             </div>
 
             <!-- View dropdown. Options: auto large normal -->
-            <div class="basic-control-wrapper">
+            <div  class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="srf-view">View</label>
                 <select class="dropdown" type="text" id="srf-view" name="feed_view_type">
                     <option value="auto">Let Fresher decide</option>
@@ -107,7 +117,7 @@
             </div>
 
             <!-- Show image dropdown. Options: auto always never -->
-            <div class="basic-control-wrapper">
+            <div  class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="srf-image">Image</label>
                 <select class="dropdown" type="text" id="srf-image" name="feed_show_image">
                     <option value="auto">Let Fresher decide</option>
@@ -117,7 +127,7 @@
             </div>
 
             <!-- Show description dropdown. Options: auto always never -->
-            <div class="basic-control-wrapper">
+            <div  class="basic-control-wrapper loadable-content">
                 <label class="control-label" for="srf-description">Description</label>
                 <select class="dropdown" type="text" id="srf-description" name="feed_show_description">
                     <option value="auto">Let Fresher decide</option>
@@ -127,17 +137,17 @@
             </div>
 
             <!-- Submit, cancel, and delete buttons -->
-            <div class="horizontal-button-container">
+            <div  class="horizontal-button-container loadable-content">
                 <!-- Submit button -->
                 <input class="submit-button" type="submit" value="Save">
 
                 <!-- Cancel button -->
                 <a class="button-tonal" href="/html/settings-rss.html"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
                     <img src="../icons/buttons/cancel.svg" class="button-icon">
-                    <p class="button-tonal-text">Cancel</p>
+                    <p class="button-tonal-text">Back</p>
                 </a>
                 <!-- Delete button -->
-                <a style="border-radius: 999px;" href="https://google.com"> 
+                <a style="border-radius: 999px;" onclick="deleteRSSFeed()"> 
                     <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg">
                 </a>
             </div> 
