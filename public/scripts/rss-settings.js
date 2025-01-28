@@ -101,7 +101,7 @@ async function checkFeed(item) {
     return fetch(`/api/rssFeedChecker?feedToCheck=${item.feed_url}`) //Send to server for checking
     .then(response => response.json())
     .then(data => {  
-        console.log(data); 
+        console.log("data", data); 
         return data              
     })
 }
