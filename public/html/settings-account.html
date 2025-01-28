@@ -31,6 +31,7 @@
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
     
     <script src="../scripts/account-settings.js" type="module"></script>
+    
 
     <style>
         .loadable-content {
@@ -67,7 +68,7 @@
         </header>
 
         <!-- Container that holds the settings, also acts as a form -->
-        <form action="/api/editAccountSettings" method="POST" class="settings-container">
+        <form action="/api/editAccountSettings" method="POST" enctype="multipart/form-data" class="settings-container">
 
             <input type="hidden" id="google-id" name="google_id" value=""> <!-- Send google ID of user to server on form submit -->
 
@@ -82,18 +83,9 @@
                 </div>
             </div>
 
-            <img src="../images/loader.gif" style="align-self: center; width: 50px;" id="loader" alt="Gif signaling waiting for content to load">
+            <img src="../images/loader.gif" style="align-self: center; width: 150px;" id="loader" alt="Gif signaling waiting for content to load">
 
-            <!-- Upload account image -->
-            <div class="basic-control-wrapper loadable-content">
-                <label class="control-label" for="acc-image" >Account picture</label>
-                <label for="image" class="image_upload" style="margin-top: 10px;">
-                    <input type="file" accept="image/*" name="account_image" id="acc-image" style="display: none;">
-                    <img class="image_upload-image" src="../images/placeholder.png" alt="Your profile picture">
-                    <img src="../icons/settings/Edit.svg" alt="Edit profile picture"> 
-                    <!-- Kociaj, P (2016) How can I upload a new file on click of image button, Accessed 1 Jan 2025-->
-                </label>
-            </div>
+
             
             <!-- Change account name -->
             <div class="basic-control-wrapper loadable-content">
@@ -104,11 +96,20 @@
             <!-- Reset account button (doesn't submit data) -->
             <div class="basic-control-wrapper loadable-content" style="display:flex; flex-direction: column; gap:10px">
                 <label class="control-label">More options</label>
-                <a class="button-caution" href="https://google.com">
+                <a class="button-caution" target="_blank" href="https://myaccount.google.com/connections/details/ATTSlxbnE6910F6qy8CCt76-jaBMgVEkGMuUYUD51TdbgDqkV_yQkXUhE4LEQxSzrC_7CD6DNh823ZpIS1Tz7qW5oeY/siwg/ATTSlxZ1gEu9ufsL4CD5OUeS7ho0V_KkCq5LxqxqZFt7n852O9XmSUQ6hrmY6Lr33HJ7chmt1zJxoCtf1EC0AWIJ">
                     <img src="../icons/buttons/bin.svg" class="button-icon">
-                    <p class="button-caution-text">Reset account</p>
+                    <p class="button-caution-text">Unlink Google account</p>
                 </a>
+
+                <div class="basic-control-wrapper loadable-content" style="display:flex; flex-direction: column; gap:10px">
+                    <a class="button-dark" href="..">
+                        <img src="../icons/buttons/Logout.svg" class="button-icon">
+                        <p class="button-dark-text" style="text-decoration: none;">Go to logout</p>
+                    </a>
+                </div>
             </div>
+
+            
 
             <!-- Submit and cancel buttons -->
             <div class="horizontal-button-container loadable-content">
@@ -116,7 +117,7 @@
                 <input class="submit-button" type="submit" value="Save">
 
                 <!-- Cancel button -->
-                <a class="button-tonal" href="javascript:window.history.back();"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
+                <a class="button-tonal" href="../html/settings-home.html"> <!-- Cantarella, A (2019) Pure HTML Back Button, Accessed Jan 2 2025 https://stackoverflow.com/questions/57361403/pure-html-back-button -->
                     <img src="../icons/buttons/cancel.svg" class="button-icon">
                     <p class="button-tonal-text">Cancel</p>
                 </a>

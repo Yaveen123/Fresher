@@ -5,11 +5,9 @@
     justify-content: flex-end;
     align-items: flex-end;
     gap: -48px;
-    margin-bottom: 20px;
+    
 }
-.image_upload:hover > .image_upload-image { 
-    outline: 1px solid #016201;
-}
+
 .image_upload-image {
     width: 185.882px;
     height: 185.882px;
@@ -17,6 +15,18 @@
     object-fit: cover;
     margin-bottom: -48px;
 }
+
+.image_upload:hover {
+    opacity: 90%;
+    filter: drop-shadow(0px 0px 1px black);
+    transition: all 0.1s;
+}
+.image_upload:-moz-suppressed {
+    opacity: 60%;
+    filter: drop-shadow(0px 0px 1px black);
+    transition: all 0.1s;
+}
+
 
 /*MARK: Textbox*/
 /*Label above control*/

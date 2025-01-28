@@ -28,7 +28,6 @@ const db = new sqlite3.Database('./.database/datasource.db', sqlite3.OPEN_READWR
 // Get account settings
 const getForSpecificUser = 'SELECT * FROM account WHERE google_id = ?'; //SQL query
 app.get('/api/accountSettings', (req, res) => {                            // the callback function runs
-    console.log(req);
     const googleId = req.query.google_id; // Get google_id from query parameters
 
     console.log(googleId);
@@ -167,6 +166,7 @@ WHERE google_id = ?
 
 app.post('/api/editAccountSettings', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
     const { account_name, account_image, google_id } = req.body;
+    console.log(account_image);
     db.run(
         editUserAccountDetails,
         [account_name, google_id],
