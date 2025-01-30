@@ -259,6 +259,8 @@ app.post('/api/getUsername', (req, res) => {                                //"A
     );
 });
 
+
+
 // Checks the feed if it's working or not.
 //Async/await promise script from rss-parser https://www.npmjs.com/package/rss-parser 
 app.get(`/api/rssFeedChecker`, (req, res) => {                            // the callback function runs
@@ -288,6 +290,7 @@ app.get(`/api/rssFeedChecker`, (req, res) => {                            // the
                 try {
                     let feed = await parser.parseURL(feedToCheck); //Tries to fetch RSS feed using the rss-parser module
                     feedToReturn = feed;
+                    
                     feed.items.forEach(item => {
                         
                     });

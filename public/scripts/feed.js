@@ -25,6 +25,7 @@ function makeArticleImageHeightResponsive() {
 }
 
 function testFetch() {
+    console.log("OWOWOWOOWWOWOW");
     fetch('/api/data1')
     .then(response => response.json())
     .then(data => {
@@ -34,4 +35,6 @@ function testFetch() {
         console.error('Error fetching data:', error);
     });
 }
+
+
 

@@ -25,15 +25,21 @@ const divHTML = `
     </div>
 `
 
-
+async function getImageUrl(description) {
+    const imgTagMatch = description.match(/<img[^>]+src="([^">]+)"/);
+    if (imgTagMatch && imgTagMatch[1]) {
+        return imgTagMatch[1];
+    } else {
+        return false;
+    }
+}
 
 
 function createFeedOptions (feedsToCreate) {
     console.log(feedsToCreate);
     for (let itemKey in feedsToCreate) {
         let item = feedsToCreate[itemKey];
-        console.log(item);
-        console.log("functional? ", item.functionality);
+
         try {
             if (item.functionality === "true") {
                 const newItem = document.createElement("div");
@@ -48,7 +54,17 @@ function createFeedOptions (feedsToCreate) {
                 };
                                 //Fetching images is problematic and requires a try statement. 
                 try {
-                    newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
+
+                    // Strip domain from URL
+                    // "User4227915" (2015) Remove everything after domain and http in url javascript, Accessed on Jan 30, 2025 https://stackoverflow.com/questions/31941899/remove-everything-after-domain-and-http-in-url-javascript
+                    const regex = /\/\/([^\/,\s]+\.[^\/,\s]+?)(?=\/|,|\s|$|\?|#)/g;
+                    let match;
+                    let strippedURL;
+                    while (match = regex.exec(item.feed_url)) {
+                        strippedURL = match[1];
+                    }
+                    newItem.querySelector('.feed-outline-info-image').src = `https://icons.feedercdn.com/${strippedURL}`;
+                    console.log(`https://icons.feedercdn.com/${item.feed_url}`)
                 } catch (error) {
                     console.log("Couldn't get image", error);
                 }

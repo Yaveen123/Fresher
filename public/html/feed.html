@@ -33,6 +33,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
     <script  src="../scripts/feed.js"></script>
+    <script src="../scripts/feed-logic.js" type="module"></script>
 </head>
 <body class="main-body">
     <!-- Navbar -->
@@ -55,59 +56,16 @@
         </a>
     </nav>
 
-    <div class="true-body">
+    <div class="true-body" id="truebody">
         <!-- Titlebar with "Fresher" -->
         <header class="titlebar-container">
-            <img src="../icons/other/logo.svg" alt="Fresher Logo">
+            <img src="../icons/other/logo.svg" alt="Fresher Logo" id="showonload">
+            <div class="progress visible" id="hideonload">
+                <div class="progress-value"></div>
+            </div>
         </header>
 
-        <!-- Contains the feed -->
-        <section class="feed-container">
-            <!-- Contains the title of the feed -->
-            <div class="comp-header">
-                <p class="comp-header-text" id="test-feed-title">Feed title</p>  <!-- Title of the feed -->
-                <div class="button-outlined">               <!-- Button which says "See more of this feed" -->
-                    <img src="../icons/buttons/forward.svg" class="button-icon" alt="Forward icon">
-                    <p class="button-outlined-text">See more of this feed</p>
-                </div>
-            </div>
-
-            <!-- Article -->
-            <a class="card" href="https://google.com">
-                <div class="card-content">
-                    <!-- Article image -->
-                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
-                    <!-- Article title -->
-                    <p class="card-content-title">Article title</p>
-                </div>
-                <!-- Article description -->
-                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
-            </a>
-
-            <!-- Article -->
-            <a class="card" href="https://google.com">
-                <div class="card-content">
-                    <!-- Article image -->
-                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
-                    <!-- Article title -->
-                    <p class="card-content-title">Article title</p>
-                </div>
-                <!-- Article description -->
-                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
-            </a>
-
-            <!-- Article -->
-            <a class="card" href="https://google.com">
-                <div class="card-content">
-                    <!-- Article image -->
-                    <img src="../images/placeholder.png" class="card-content-image" alt="A placeholder image for this article">
-                    <!-- Article title -->
-                    <p class="card-content-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente porro ipsam tempora facilis libero enim ratione, placeat quisquam commodi atque aliquid autem sequi minus dignissimos. Dolorum explicabo sed corporis quasi!</p>
-                </div>
-                <!-- Article description -->
-                <p class="card-description"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam autem neque vel aperiam et officiis sequi ratione dicta recusandae numquam reiciendis praesentium, blanditiis optio soluta tempora alias. Dolore, omnis aliquid!</p>
-            </a>
-        </section>
+        
     </div>
     
     <script> makeArticleImageHeightResponsive(); </script>

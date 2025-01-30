@@ -22,3 +22,57 @@
         align-self: stretch;
     }
 }
+
+
+/*Fairbanks, S (2013) Super Simple Progress Bar, Accessed Jan 30 2025, https://devsnap.me/css-progress-bars*/
+.progress {
+    background: #016201;
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 20px;
+    width: 200px;
+}
+    
+.progress-value {
+animation: load 3s normal forwards;
+box-shadow: 0 10px 40px -10px #fff;
+border-radius: 100px;
+background: #fff;
+height: 10px;
+width: 0;
+}
+
+@keyframes load {
+0% { width: 0; }
+100% { width: 68%; }
+}
+
+.visible {
+    visibility: visible;
+    margin-left: 30px;
+    opacity: 1;
+    transition: opacity 0.5s ;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    width:0;
+    transition: all 0.5s ease-in-out;
+}
+
+.card {
+    animation: articleload 0.5s normal forwards;
+}
+
+@keyframes articleload {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}    
+}

@@ -33,7 +33,7 @@ async function fetchFeedSettings() {
         fetch(`/api/feedSettings?feed=${feedID}&googleid=${googleId}`)
             .then(response => response.json())
             .then(async data => {
-                console.log(data);
+                console.log("data", data);
 
                 await checkIfFeedBelongsToUser(googleId, data);
 
