@@ -36,6 +36,31 @@ async function trimString(string, length) {
     return string.length > length ? string.substring(0, length - 3) + "..." : string.substring(0, length);
 }
 
+// Changes the height of images based on the text available on mobile devices.
+async function makeArticleImageHeightResponsive() {
+    if (document.documentElement.clientWidth < 600) { // When the width of the screen is less than 600 (mobile)...
+        const images = document.querySelectorAll(".card-content-image"); // Get all images
+        const titles = document.querySelectorAll(".card-content-title"); // Get all title objects
+        images.forEach(async (image, index) => { // For all of the images...
+            image.style.height = titles[index].offsetHeight + 'px'; // Set their height to be equal to the height of the title
+        });
+    }
+    window.addEventListener('resize', async () => { // When the window resizes, do it all again
+        if (document.documentElement.clientWidth < 600) {
+            const images = document.querySelectorAll(".card-content-image");
+            const titles = document.querySelectorAll(".card-content-title");
+            images.forEach(async (image, index) => {
+                image.style.height = titles[index].offsetHeight + 'px';
+            });
+        } else { // except if the device is desktop/tablet...
+            const images = document.querySelectorAll(".card-content-image"); // then get all images
+            images.forEach(async (image) => { // and set their height to 278 px
+                image.style.height = '278px';
+            });
+        }
+    });
+}
+
 
 
 async function displayContent(dataToDisplay, settingsForFeed) {
@@ -115,6 +140,7 @@ async function displayContent(dataToDisplay, settingsForFeed) {
                 domArticle.querySelector('.card-description').remove();
             }
             document.getElementById(settingsForFeed.feed_id).appendChild(domArticle);
+            await new Promise(resolve => setTimeout(resolve, 10)); // Transition animation
         }
     }
 }
@@ -154,10 +180,13 @@ async function getFeedsFromServer(google_id) {
                 await displayContent(dataToDisplay, feed);
             }
         }
+        await makeArticleImageHeightResponsive();
     } catch (error) {
         console.log("Couldn't get feeds list from server: ", error);
     }
 }
+
+
 
 async function mainFeed() {
     try {
@@ -166,8 +195,12 @@ async function mainFeed() {
 
         await getFeedsFromServer(google_id);
 
-        document.getElementById("showonload").className = "visible";
+        
+
         document.getElementById("hideonload").className = "progress hidden";
+        await new Promise(resolve => setTimeout(resolve, 500));
+        document.getElementById("showonload").className = "visible";
+        
     } catch (error) {
         console.error('Error fetching user:', error);
     }

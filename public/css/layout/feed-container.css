@@ -53,9 +53,8 @@ width: 0;
 
 .visible {
     visibility: visible;
-    margin-left: 30px;
     opacity: 1;
-    transition: opacity 0.5s ;
+    transition: all 0.5s;
 }
 .hidden {
     visibility: hidden;
@@ -64,15 +63,3 @@ width: 0;
     transition: all 0.5s ease-in-out;
 }
 
-.card {
-    animation: articleload 0.5s normal forwards;
-}
-
-@keyframes articleload {
-0% {
-    opacity: 0;
-}
-100% {
-    opacity: 1;
-}    
-}
