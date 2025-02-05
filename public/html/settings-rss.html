@@ -37,19 +37,19 @@
     <!-- Navbar -->
     <nav class="comp-navbar"> 
         <!-- Home -->
-        <a class="comp-navbar-icon-default" href="../html/feed.html">
+        <a title="Home feed" class="comp-navbar-icon-default" href="../html/feed.html">
             <img src="../icons/navbar/home.svg" class="comp-navbar-svg" alt="Home icon">
         </a>
         <!-- RSS -->
-        <a class="comp-navbar-icon-default" href="../html/settings-rss.html" style="background-color: rgba(4, 86, 1, 0.1);">
+        <a title="RSS Settings" class="comp-navbar-icon-default" href="../html/settings-rss.html" style="background-color: rgba(4, 86, 1, 0.1);">
             <img src="../icons/navbar/rss.svg" class="comp-navbar-svg" alt="RSS settings icon">
         </a>
         <!-- Settings -->
-        <a class="comp-navbar-icon-default" href="../html/settings-home.html">
+        <a title="Settings" class="comp-navbar-icon-default" href="../html/settings-home.html">
             <img src="../icons/navbar/settings.svg" class="comp-navbar-svg" alt="General settings icon">
         </a>
         <!-- Account -->
-        <a class="comp-navbar-icon-default" href="../html/settings-account.html">
+        <a title="Account Settings" class="comp-navbar-icon-default" href="../html/settings-account.html">
             <img src="../icons/buttons/account.svg" class="comp-navbar-svg" alt="Account profile picture">
         </a>
     </nav>
@@ -62,11 +62,11 @@
 
         <!-- Container that holds the settings -->
         <section action="" class="settings-container" id="rss-settings-container">
-
+            
             <!-- Header section -->
             <div class="header-with-breadcrumb">
                 <div class="breadcrumb-container">
-                    <a href="../html/settings-home.html" class="breadcrumb-container-text">Settings</a>
+                    <a href="../html/settings-home.html" class="breadcrumb-container-text" title="Jump to settings home">Settings</a>
                 </div>
                 <div class="header-container">
                     <img src="../icons/batteredheader/address.svg" alt="A non-functional arrow pointing towards the page heading.">
@@ -79,17 +79,23 @@
             <!-- Add new feed and refresh buttons -->
             <div class="horizontal-button-container" style="display:none" id="showOnLoad">
                 <!-- Add new feed button -->
-                <a class="button-filled" href="../html/settings-rss-feed.html?feed=new"> 
+                <a class="button-filled" href="../html/settings-rss-feed.html?feed=new" title="Add a new feed"> 
                     <img src="../icons/buttons/add_feed.svg" class="button-icon">
                     <p class="button-filled-text">Add new feed</p>
                 </a>
                 
                 <!-- Refresh button -->
-                <button class="button-tonal" style="border: 0px;" onclick="history.go(0);"> <!-- Lobito (2015) Button that refreshes page on click, Accessed 17 Jan 2025 https://stackoverflow.com/questions/29884654/button-that-refreshes-the-page-on-click -->
+                <button class="button-tonal" style="border: 0px;" onclick="history.go(0);" title="Refresh feeds list"> <!-- Lobito (2015) Button that refreshes page on click, Accessed 17 Jan 2025 https://stackoverflow.com/questions/29884654/button-that-refreshes-the-page-on-click -->
                     <img src="../icons/buttons/refresh.svg" class="button-icon">
                     <p class="button-tonal-text">Refresh</p>
                 </button>
             </div>
+
+            <div  id="no_items_to_show" style="display: none; flex-direction: row; gap: 10px;">
+                <img src="../icons/other/uparrow.svg"  alt="Arrow pointing to the 'Add new feed' button.">
+                <p class="info" style="align-self:flex-end;">Add a feed using the "Add new feed" button</p>    
+            </div>
+            
         </section>
     </div>
 </body>

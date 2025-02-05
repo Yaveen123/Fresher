@@ -137,7 +137,6 @@ app.get('/api/feedSettings', (req, res) => {                            // the c
                     [lastcreatedid],                                                       // with the following parameters
                     (err, rows) => {                                                       // callback function for the database retrival function
                         if (err) return console.error(err.message);
-                        console.log(rows);
                         res.json(rows);                                                    // The data is posted to the endpoint
                     }
                 );
@@ -226,9 +225,7 @@ app.post('/api/editRSSFeedSettings', (req, res) => {                           /
 
 //Edit account details
 const deleteRSSFeed = `
-UPDATE feed
-SET feed_name = ?, google_id = ?, feed_url = ?, feed_article_num = ?, feed_view_type = ?, feed_show_image = ?, feed_show_description = ?
-WHERE feed_id = ?
+DELETE FROM feed WHERE feed_id = ?
 `; //SQL query
 app.get('/api/deleteFeed', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
 
@@ -236,7 +233,7 @@ app.get('/api/deleteFeed', (req, res) => {                           //"Alexande
 
     db.run(
         deleteRSSFeed,
-        ["-", "-", "-", "0", "-", "-", "-", feed_id],
+        [feed_id],
         function(err) {
             if (err) return console.error(err.message);
             console.log(`SQL deleteRSSFeed, Rows updated ${this.changes}`);

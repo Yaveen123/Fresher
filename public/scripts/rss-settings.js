@@ -15,11 +15,11 @@ const divHTML = `
     <!-- Buttons -->
     <div class="feed-outline-actions">
         <!-- Edit button -->
-        <a id="edit-button" href="../html/settings-rss-feed.html">
+        <a id="edit-button" href="../html/settings-rss-feed.html" title="Edit this feed">
             <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/edit rss.svg" alt="Edit RSS feed button">
         </a>
         <!-- Delete button -->
-        <a id="delete-button">
+        <a id="delete-button" title="Delete this feed">
             <img class="feed-outline-info-content-titlecontainer-icon" src="../icons/rss/delete rss.svg" alt="Delete RSS feed button">
         </a>
     </div>
@@ -37,6 +37,11 @@ async function getImageUrl(description) {
 
 function createFeedOptions (feedsToCreate) {
     console.log(feedsToCreate);
+    if (Object.keys(feedsToCreate).length === 0) {
+        console.log("none");
+        document.getElementById("no_items_to_show").style.display = "flex";
+    }
+
     for (let itemKey in feedsToCreate) {
         let item = feedsToCreate[itemKey];
 
