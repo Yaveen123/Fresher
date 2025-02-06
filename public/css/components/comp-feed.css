@@ -1,0 +1,12 @@
+.info {
+    display: none;
+    margin-top: 10%;
+    padding: 0px 18px; 
+    align-self: center;
+    color: #777;
+    font-family: "DM Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

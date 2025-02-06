@@ -85,7 +85,7 @@ WHERE NOT EXISTS (SELECT 1 FROM account WHERE google_id = ?)
 // Same as above but inserts sample data for feed.
 const addDemoFeed = `
 INSERT INTO feed (feed_id, google_id, feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description)
-SELECT (SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'CNET',  'https://www.cnet.com/rss/news/', 4, 'auto', 'auto', 'auto'
+SELECT (SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'The Verge',  'https://www.theverge.com/rss/creators/index.xml', 6, 'auto', 'auto', 'auto'
 WHERE NOT EXISTS (SELECT 1 FROM feed WHERE google_id = ?)
 `;
 app.use(express.json()); //Middleware that parses incoming rquires with JSON things inside.
@@ -114,7 +114,7 @@ app.post('/api/logUserIn', (req, res) => {
 // Get RSS feed settings
 const addNewFeed = `
 INSERT INTO feed (feed_id, google_id, feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description)
-VALUES ((SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'Unnamed feed', 'Add URL here', 4, 'auto', 'auto', 'auto')
+VALUES ((SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'Unnamed feed', 'Add URL here', 6, 'auto', 'auto', 'auto')
 `;
 
 const getSettingsForFeed = 'SELECT * FROM feed WHERE feed_id = ?';

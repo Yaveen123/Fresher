@@ -20,6 +20,7 @@ const template_article = `
 `
 
 
+
 // "MikeM" (2013) Extract image src from a string, Accessed Jan 30 2025 https://stackoverflow.com/questions/14939296/extract-image-src-from-a-string 
 async function getImageUrl(description) {
     const imgTagMatch = description.match(/<img[^>]+src="([^">]+)"/);
@@ -171,15 +172,39 @@ async function getFeedsFromServer(google_id) {
     try {
         const response = await fetch(`/api/rssFeeds?google_id=${google_id}`);
         const data = await response.json();
+
         
+        
+        let successfulFeeds = 0; // Counter for successful feeds
+        let failedFeeds = 0;
+
         for (let feed of data) { // Loop through all of the feeds 
             const dataToDisplay = await retrieveDataFromFeed(feed.feed_url); // Gets the feed data
 
             if (dataToDisplay != false) { // Does not continue if the RSS feed failed.
                 console.log(dataToDisplay);
                 await displayContent(dataToDisplay, feed);
+                successfulFeeds++; // Increment counter for each successful feed
+            } else {
+                failedFeeds++; // Incrememnt counter for each unsuccessful feed (differentiate between what err message to show)
             }
         }
+
+        if (successfulFeeds > 0) {
+            console.log(`${successfulFeeds} RSS feeds successfully displayed.`);
+            if (failedFeeds > 0) {
+                document.getElementById("some_broken").parentNode.appendChild(document.getElementById("some_broken")); //Kinal, R (2010) Moving a div element to bottom of parent as last child, accessed Feb 6 2025 https://stackoverflow.com/questions/3415480/moving-a-div-element-to-bottom-of-parent-as-last-child 
+                document.getElementById("some_broken").style.display = "block";
+            }
+        } else {
+            console.log("No RSS feeds were successfully displayed.");
+            if (failedFeeds > 0) {
+                document.getElementById("all_broken").style.display = "block";
+            } else {
+                document.getElementById("none_available").style.display = "block";
+            } 
+        }
+
         await makeArticleImageHeightResponsive();
     } catch (error) {
         console.log("Couldn't get feeds list from server: ", error);
