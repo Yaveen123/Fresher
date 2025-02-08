@@ -25,12 +25,13 @@
     <link rel="stylesheet" href="../css/components/comp-titlebar.css">
     <link rel="stylesheet" href="../css/components/comp-cards.css">
     
+    <!-- Imports appwrite and google API platform. -->
     <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <script  src="../scripts/loginCheck.js" type="module" defer></script>
 
 </head>
 <body class="main-body">
-    <!-- Navbar -->
+    <!--MARK: Navbar -->
     <nav class="comp-navbar"> 
         <!-- Home -->
         <a title="Home feed" class="comp-navbar-icon-default" href="../html/feed.html">
@@ -50,6 +51,7 @@
         </a>
     </nav>
 
+    <!--MARK: True body starts here-->
     <div class="true-body">
         <!-- Titlebar with "Fresher" -->
         <header class="titlebar-container">
@@ -63,6 +65,9 @@
             <div class="comp-header">
                 <p class="comp-header-text">Settings</p>
             </div>
+
+            <!-- Settings to show -->
+            <!-- RSS Feeds -->
             <a href="../html/settings-rss.html" class="settings-item" title="RSS feeds settings">
                 <img src="../icons/settings/RSS icon.svg" alt="RSS feed icon">
                 <div class="settings-item-content">
@@ -70,6 +75,8 @@
                     <p class="settings-item-content-descripton">Add feeds, Check feeds, Edit feed settings</p>
                 </div>
             </a>
+
+            <!-- Account -->
             <a href="../html/settings-account.html" class="settings-item" title="Account settings">
                 <img src="../icons/settings/Account icon.svg" alt="Account icon">
                 <div class="settings-item-content">
@@ -77,6 +84,8 @@
                     <p class="settings-item-content-descripton">Edit account name, Unlink from Google, Logout</p>
                 </div>
             </a>
+
+            <!-- Experiments -->
             <a href="../html/settings-advanced.html" class="settings-item" title="Experiments settings">
                 <img src="../icons/settings/Advanced icon.svg" alt="Icon representing advanced settings">
                 <div class="settings-item-content">

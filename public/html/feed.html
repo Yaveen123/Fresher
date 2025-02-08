@@ -29,13 +29,14 @@
     <link rel="stylesheet" href="../css/components/comp-feed.css">
 
     <!-- Client side scripts (JS) -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script> 
+
+    <!-- Imports appwrite and google API platform. -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    
-    <script  src="../scripts/feed.js"></script>
     <script src="../scripts/feed-logic.js" type="module"></script>
+
 </head>
+<!--MARK: Header -->
 <body class="main-body">
     <!-- Navbar -->
     <nav class="comp-navbar"> 
@@ -57,6 +58,7 @@
         </a>
     </nav>
 
+    <!--MARK: True body starts here-->
     <div class="true-body" id="truebody">
         <!-- Titlebar with "Fresher" -->
         <header class="titlebar-container">
@@ -66,16 +68,20 @@
             <img src="../icons/other/logo.svg" alt="Fresher Logo" class="hidden" id="showonload">
         </header>
 
-        
+        <!-- Information to show dependent on context. Defaults to display:none, however is shown via DOM on JS [feed-logic.js] -->
+        <!-- When there arent any feeds to show because the user hasn't added any... --> 
         <p class="info" id="none_available">Nothing to show here. Add a new feed at <a href="../html/settings-rss.html">RSS feed settings.</a></p>
+        
+        <!-- When there arent any feeds to show because they're all broken...        --> 
         <p class="info" id="all_broken">No RSS feed was functional. Edit your feeds at <a href="../html/settings-rss.html">RSS feed settings.</a></p>
+        
+        <!-- When a few RSS feeds are broken                                         --> 
         <p class="info" id="some_broken">Fresher couldn't display some feeds. Edit your feeds at <a href="../html/settings-rss.html">RSS feed settings.</a></p>
     
         
     </div>
 
-    
-    
+    <!-- In mobile view, forces articles to appear as the size that they were set as. -->
     <script> makeArticleImageHeightResponsive(); </script>
 
 

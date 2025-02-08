@@ -25,22 +25,25 @@ const db = new sqlite3.Database('./.database/datasource.db', sqlite3.OPEN_READWR
 
 
 
+//MARK: GET account settings
 // Get account settings
 const getForSpecificUser = 'SELECT * FROM account WHERE google_id = ?'; //SQL query
 app.get('/api/accountSettings', (req, res) => {                            // the callback function runs
     const googleId = req.query.google_id; // Get google_id from query parameters
-
-    console.log(googleId);
+    
     db.all(                                                                  //Retrieve the data from the database
     getForSpecificUser,                                                    //run the SQL query 
     [googleId],                                                               // with the following parameters
     (err, rows) => {                                                       // callback function for the database retrival function
-        if (err) return console.error(err.message);
-        console.log(rows);
+        if (err) return console.error("Error at /api/accountSettings", err.message);
         res.json(rows);                                                    // The data is posted to the endpoint
     }
 );
 });
+
+
+
+//MARK: GET advanced settings
 // Get advanced settings
 app.get('/api/advancedSettings', (req, res) => {                            // the callback function runs
     const googleId = req.query.google_id; // Get google_id from query parameters
@@ -49,12 +52,15 @@ app.get('/api/advancedSettings', (req, res) => {                            // t
     getForSpecificUser,                                                    //run the SQL query 
     [googleId],                                                               // with the following parameters
     (err, rows) => {                                                       // callback function for the database retrival function
-        if (err) return console.error(err.message);
+        if (err) return console.error("Error at /api/advancedSettings", err.message);
         res.json(rows);                                                    // The data is posted to the endpoint
     }
 );
 });
 
+
+
+//MARK: GET rss feeds
 // Get RSS feeds
 const getRSSForSpecificUser = 'SELECT * FROM feed WHERE google_id = ?'; //SQL query
 app.get('/api/rssFeeds', (req, res) => {                            // the callback function runs
@@ -64,7 +70,7 @@ app.get('/api/rssFeeds', (req, res) => {                            // the callb
     getRSSForSpecificUser,                                                    //run the SQL query 
     [googleId],                                                               // with the following parameters
     (err, rows) => {                                                       // callback function for the database retrival function
-        if (err) return console.error(err.message);
+        if (err) return console.error("Error at /api/rssFeeds", err.message);
         res.json(rows);                                                    // The data is posted to the endpoint
     }
 );
@@ -72,7 +78,7 @@ app.get('/api/rssFeeds', (req, res) => {                            // the callb
 
 
 
-
+//MARK: POST log user in
 // When user logs in, this runs. Creates a new account whenever a new user logs in. 
 // Insert a record into the google_id column of the account table, then give the value, set account_id to an increment of the previous, and insert only if there isn't a record found.
 // 'systempunttoout' (2010) SQL: How to properly check if a record exists Accessed 7 Jan 2025 https://stackoverflow.com/questions/4253960/sql-how-to-properly-check-if-a-record-exists 
@@ -97,26 +103,27 @@ app.post('/api/logUserIn', (req, res) => {
         checkUserExistsOnDB,
         [req.body.$id, req.body.name, req.body.$id],
         function(err) {
-            if (err) return console.error(err.message);
+            if (err) return console.error("Error at /api/logUserIn", err.message);
             console.log(`SQL checkUserExistsOnDB, Rows inserted ${this.changes}`);
 
             db.run(
                 addDemoFeed,
                 [req.body.$id, req.body.$id],
                 function(err) {
-                    if (err) return console.error(err.message);
+                    if (err) return console.error("Error at /api/logUserIn", err.message);
                     console.log(`SQL addDemoFeed, Rows inserted ${this.changes}`);
                 });
         });
 });
 
 
+
+//MARK: GET rss feed settings
 // Get RSS feed settings
 const addNewFeed = `
 INSERT INTO feed (feed_id, google_id, feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description)
 VALUES ((SELECT IFNULL(MAX(feed_id), 0) + 1 FROM feed), ?, 'Unnamed feed', 'Add URL here', 6, 'auto', 'auto', 'auto')
 `;
-
 const getSettingsForFeed = 'SELECT * FROM feed WHERE feed_id = ?';
 app.get('/api/feedSettings', (req, res) => {                            // the callback function runs
     const feedID = req.query.feed; // Get feed id from query parameters
@@ -128,7 +135,7 @@ app.get('/api/feedSettings', (req, res) => {                            // the c
             addNewFeed,
             [google_id],
             function(err) {
-                if (err) return console.error(err.message);
+                if (err) return console.error("Error at /api/feedSettings, level 1", err.message);
                 console.log(`SQL addNewFeed, Rows inserted ${this.changes}`);
                 lastcreatedid = this.lastID; // Get last ID. From sqlite3 docs. https://github.com/TryGhost/node-sqlite3/wiki/API#databaserun:~:text=If%20execution%20was%20successful%2C%20the%20this,.get()%20don%27t%20retrieve%20these%20values. 
                 
@@ -136,7 +143,7 @@ app.get('/api/feedSettings', (req, res) => {                            // the c
                     getSettingsForFeed,                                                    //run the SQL query 
                     [lastcreatedid],                                                       // with the following parameters
                     (err, rows) => {                                                       // callback function for the database retrival function
-                        if (err) return console.error(err.message);
+                        if (err) return console.error("Error at /api/feedSettings, level 2", err.message);
                         res.json(rows);                                                    // The data is posted to the endpoint
                     }
                 );
@@ -147,8 +154,7 @@ app.get('/api/feedSettings', (req, res) => {                            // the c
             getSettingsForFeed,                                                    //run the SQL query 
             [feedID],                                                               // with the following parameters
             (err, rows) => {                                                       // callback function for the database retrival function
-                if (err) return console.error(err.message);
-                console.log(rows);
+                if (err) return console.error("Error at /api/feedSettings, level 3", err.message);
                 res.json(rows);                                                    // The data is posted to the endpoint
             }
         );
@@ -156,21 +162,21 @@ app.get('/api/feedSettings', (req, res) => {                            // the c
 });
 
 
+
+//MARK: POST edit account settings
 //Edit account details
 const editUserAccountDetails = `
 UPDATE account
 SET account_name = ?
 WHERE google_id = ?
 `; //SQL query
-
 app.post('/api/editAccountSettings', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
     const { account_name, account_image, google_id } = req.body;
-    console.log(account_image);
     db.run(
         editUserAccountDetails,
         [account_name, google_id],
         function(err) {
-            if (err) return console.error(err.message);
+            if (err) return console.error("Error at /api/editAccountSettings", err.message);
             console.log(`SQL editUserAccountDetails, Rows updated ${this.changes}`);
     });
     res.statusCode = 302;                                                       // Redirects back.
@@ -178,20 +184,22 @@ app.post('/api/editAccountSettings', (req, res) => {                           /
     res.end();
 });
 
+
+
+//MARK: POST edit experimental settings
 //Edit account details
 const editAdvancedSettings = `
 UPDATE account
 SET advanced_show_provider = ?, advanced_show_age = ?
 WHERE google_id = ?
-`; //SQL query
-
+`; 
 app.post('/api/editAdvancedSettings', (req, res) => {                           //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
     const { advanced_show_provider, advanced_show_age, google_id } = req.body;
     db.run(
         editAdvancedSettings,
         [advanced_show_provider, advanced_show_age, google_id],
         function(err) {
-            if (err) return console.error(err.message);
+            if (err) return console.error("Error at /api/editAdvancedSettings", err.message);
             console.log(`SQL editAdvancedSettings, Rows updated ${this.changes}`);
     });
     res.statusCode = 302;                                                       // Redirects back.
@@ -199,6 +207,9 @@ app.post('/api/editAdvancedSettings', (req, res) => {                           
     res.end();
 });
 
+
+
+//MARK: POST edit RSS feed settings
 //Edit account details
 const editRSSFeedSettings = `
 UPDATE feed
@@ -213,7 +224,7 @@ app.post('/api/editRSSFeedSettings', (req, res) => {                           /
             editRSSFeedSettings,
             [feed_name, feed_url, feed_article_num, feed_view_type, feed_show_image, feed_show_description, feed_id],
             function(err) {
-                if (err) return console.error(err.message);
+                if (err) return console.error("Error at /api/editRSSFeedSettings ", err.message);
                 console.log(`SQL editAdvancedSettings, Rows updated ${this.changes}`);
         });
     
@@ -223,6 +234,9 @@ app.post('/api/editRSSFeedSettings', (req, res) => {                           /
     res.end();
 });
 
+
+
+//MARK: GET feed settings
 //Edit account details
 const deleteRSSFeed = `
 DELETE FROM feed WHERE feed_id = ?
@@ -235,13 +249,15 @@ app.get('/api/deleteFeed', (req, res) => {                           //"Alexande
         deleteRSSFeed,
         [feed_id],
         function(err) {
-            if (err) return console.error(err.message);
+            if (err) return console.error("Error at /api/deleteFeed ", err.message);
             console.log(`SQL deleteRSSFeed, Rows updated ${this.changes}`);
     });
     res.send({ redirectto: `/html/settings-rss-feed.html`});
 });
 
 
+
+//MARK: POST get username
 //Get the username
 const getUsername = `SELECT account_name FROM account WHERE google_id = ?`; //SQL query
 app.post('/api/getUsername', (req, res) => {                                //"Alexander" (2016) How to get data passed from a form in Express (Node.js), accessed Jan 6 2025 https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js  
@@ -250,7 +266,7 @@ app.post('/api/getUsername', (req, res) => {                                //"A
         getUsername,
         [req.body.account_id],
         (err, rows) => {                                                    // callback function for the database retrival function
-            if (err) return console.error(err.message);
+            if (err) return console.error("Error at /api/getUsername ", err.message);
             res.send(rows);                                                 // The data is posted to the endpoint
         }
     );
@@ -258,6 +274,7 @@ app.post('/api/getUsername', (req, res) => {                                //"A
 
 
 
+//MARK: GET rss feed checker 
 // Checks the feed if it's working or not.
 //Async/await promise script from rss-parser https://www.npmjs.com/package/rss-parser 
 app.get(`/api/rssFeedChecker`, (req, res) => {                            // the callback function runs

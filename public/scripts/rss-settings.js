@@ -25,6 +25,8 @@ const divHTML = `
     </div>
 `
 
+// MARK: getImageUrl(...)
+// Searches for the image URL in a given string using REGEX matching.
 async function getImageUrl(description) {
     const imgTagMatch = description.match(/<img[^>]+src="([^">]+)"/);
     if (imgTagMatch && imgTagMatch[1]) {
@@ -34,19 +36,24 @@ async function getImageUrl(description) {
     }
 }
 
-
+// MARK: createFeedOptions(...)
+// Shows the feeds that the user can edit
 function createFeedOptions (feedsToCreate) {
-    console.log(feedsToCreate);
+
+    // If there arent any feeds to show, then display a nudge that shows that the user has to add in a few feed
     if (Object.keys(feedsToCreate).length === 0) {
-        console.log("none");
+        console.log("No feeds to create.");
         document.getElementById("no_items_to_show").style.display = "flex";
     }
 
+    // For each feed to show
     for (let itemKey in feedsToCreate) {
         let item = feedsToCreate[itemKey];
 
         try {
+            // If the feed is function, show a functional feed
             if (item.functionality === "true") {
+                // Creates a new feed item
                 const newItem = document.createElement("div");
                 newItem.className = "feed-outline functional";
                 newItem.id = item.feed_id;
@@ -68,14 +75,18 @@ function createFeedOptions (feedsToCreate) {
                     while (match = regex.exec(item.feed_url)) {
                         strippedURL = match[1];
                     }
+                    // Adds a image to the feed
                     newItem.querySelector('.feed-outline-info-image').src = `https://icons.feedercdn.com/${strippedURL}`;
-                    console.log(`https://icons.feedercdn.com/${item.feed_url}`)
                 } catch (error) {
                     console.log("Couldn't get image", error);
                 }
+
+                // Appends the feed to the body
                 document.getElementById("rss-settings-container").appendChild(newItem);
-                
+            
+            // If the feed isn't functional, show a broken feed
             } else {
+                // Creates a new feed to display
                 const newItem = document.createElement("div");
                 newItem.className = "feed-outline broken";
                 newItem.id = item.feed_id;
@@ -86,16 +97,15 @@ function createFeedOptions (feedsToCreate) {
                 newItem.querySelector('#delete-button').onclick = function() {
                     deleteRSSFeedWithParam(item.feed_id);
                 };
-                //Fetching images is problematic and requires a try statement. 
-                try {
-                    newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
-                } catch (error) {
-                    console.log("Couldn't get image", error);
-                }
+                // Appends the feed to the body
                 document.getElementById("rss-settings-container").appendChild(newItem);
             }
+
+        // If there was an error then show that there was an error
         } catch (error) {
-            console.log(error)
+            console.log("Error loading item: ", error)
+
+            // Creates a new feed to display  
             const newItem = document.createElement("div");
             newItem.className = "feed-outline requiresrefresh";
             newItem.id = item.feed_id;
@@ -105,28 +115,27 @@ function createFeedOptions (feedsToCreate) {
             newItem.querySelector('#edit-button').href = `../html/settings-rss-feed.html?feed=${item.feed_id}`;
             newItem.querySelector('#delete-button').onclick = function() {
                 deleteRSSFeedWithParam(item.feed_id);
-            };            //Fetching images is problematic and requires a try statement. 
-            try {
-                newItem.querySelector('.feed-outline-info-image').src = item.extraData.feedData.image.url;
-            } catch (error) {
-                console.log("Couldn't get image", error);
-            }
+            };      
+            // Appends the feed to the body      
             document.getElementById("rss-settings-container").appendChild(newItem);
         }
     }
+
+    // Shows/hides loading bar
     document.getElementById("showOnLoad").style.display = "flex";
     document.getElementById("loader").style.display = "none";
 }
 
+// MARK: checkFeed(...)
 async function checkFeed(item) {
+    // Gets the feed to be checked by the server
     return fetch(`/api/rssFeedChecker?feedToCheck=${item.feed_url}`) //Send to server for checking
     .then(response => response.json())
     .then(data => {  
-        console.log("data", data); 
         return data              
     })
 }
-
+// MARK: checkFeedFunctionality(...)
 // Checks if the feed is functioanl or not
 async function checkFeedFunctionality(feedsToCheck) {
     const feedsDict = {};
@@ -142,14 +151,18 @@ async function checkFeedFunctionality(feedsToCheck) {
     return feedsDict;
 }
 
+
+//MARK: getRSSFeedsFromServer()
 async function getRSSFeedsFromServer () {
     try {
         const user = await account.get(); // Get the account and then get their google ID
         const googleID = user.$id; 
 
+        // Gets the RSS feeds to display
         fetch(`/api/rssFeeds?google_id=${googleID}`) 
             .then(response => response.json())
             .then(async data => {
+                // Shows the feeds
                 createFeedOptions(await checkFeedFunctionality(data))
             })
 
