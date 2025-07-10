@@ -1,7 +1,7 @@
 # Fresher
- 12-SEN AT-1
-
 Welcome to Fresher! A place where you can see all your favourite feeds in one place. 
+![awefawefawefewf](https://github.com/user-attachments/assets/291fab62-bb4e-4b71-b342-432f38da0792)
+
 
 
 ## Installing Fresher
